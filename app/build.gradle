@@ -1,0 +1,191 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.aroominn.aroom"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }/*
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "0f944e2e1e90e984273cba71", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]*/
+
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    /*  sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }*/
+//    buildToolsVersion '27.0.3'
+}
+//第三方包强制使用指定版本的support包：
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '27.1.1'
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /**第三方*/
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
+    implementation 'com.squareup.okio:okio:1.12.0'
+    api 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.android.support:multidex:1.0.2'
+    implementation 'com.facebook.fresco:fresco:1.3.0'
+    implementation 'com.facebook.fresco:imagepipeline-okhttp3:1.3.0'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    /*刷新*/
+
+    //1.1.0 API改动过大，老用户升级需谨慎
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-19'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-19'
+
+    //没有使用特殊Header，可以不加这行
+
+    //    api 'com.android.support:appcompat-v7:25.3.1'//版本 23以上（必须）
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    /*圆形图片*/
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    /*状态栏*/
+    implementation 'com.jaeger.statusbarutil:library:1.4.0'
+
+    /*标题栏*/
+    implementation 'com.hjq:titlebar:5.0'
+
+
+
+
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    implementation 'com.sackcentury:shinebutton:0.2.0'
+
+    //滑动退出
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
+    implementation 'com.github.razerdp:BasePopup:2.1.8'
+
+    //句话搞定Android底部导航栏，一键绑定Fragment、ViewPager
+    implementation 'com.github.zhaolei9527:UseBottomTabBar:v1.0.4'
+    implementation 'com.github.tyhjh:AudioRecording:v1.0.0'
+    implementation 'com.github.niniloveyou:StateButton:v1.0.0'
+
+    //    implementation 'com.android.support:support-emoji-bundled:27.1.1'
+
+    //    implementation 'com.android.support:support-emoji-appcompat:27.1.1'
+
+    /*
+                            1、添加emoji元数据库和兼容性控件库
+
+                        implementation 'com.android.support:support-emoji-bundled:26.0.0'
+                        implementation 'com.android.support:support-emoji-appcompat:26.0.0'
+
+
+                        　　2、布局文件中使用兼容性控件
+
+                        <android.support.text.emoji.widget.EmojiAppCompatTextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"/>
+
+                        <android.support.text.emoji.widget.EmojiAppCompatEditText
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"/>
+
+                        <android.support.text.emoji.widget.EmojiAppCompatButton
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"/>
+
+                        　　3、在使用的activity创建时初始化
+
+                        public class MyActivity extends Activity {
+                            @Override
+                            public void onCreate() {
+                                super.onCreate();
+                                EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+                                EmojiCompat.init(config);
+                                ...
+                            }
+                        }
+                            * */
+
+    //    开关按钮
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
+    //    implementation 'com.github.limuyang2:LPhotoPicker:1.0.7'
+    api 'com.zhihu.android:matisse:0.5.2-beta4'
+
+    /**jiguang */
+//    api 'cn.jiguang.sdk:jmessage:2.9.0'
+
+    // 此处以JMessage 2.9.0 版本为例。
+//    api 'cn.jiguang.sdk:jcore:2.0.0'
+
+    // 此处以JCore 2.0.0 版本为例。
+//    api 'cn.jiguang.sdk:jpush:3.1.6'
+//    api 'cn.jiguang.sdk:jverification:2.5.2'
+
+    // 此处以2.3.4 版本为例。
+
+    // 此处以JPush 3.1.6 版本为例
+
+    // 此处以JCore 1.2.5 版本为例。
+    api 'com.tencent.bugly:crashreport:latest.release'
+
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+    api 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+
+    //    implementation project(':matisse')
+    implementation 'com.github.chrisbanes:PhotoView:1.2.6'
+
+    //    https://github.com/pengjianbo/GalleryFinal
+//    implementation files('libs/jsms_android-1.2.4.jar')
+//    implementation project(':IMkit')
+//    implementation project(':IMLib')
+    api 'cn.rongcloud.sdk:im_kit:2.10.0'
+//im_kit必须依赖im_lib，所以需要加入对应依赖
+    api 'cn.rongcloud.sdk:im_lib:2.10.0'
+}

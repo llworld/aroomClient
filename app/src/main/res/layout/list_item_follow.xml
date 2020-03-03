@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_144"
+    android:background="@color/white"
+    android:padding="@dimen/dimen_12">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/follow_item_header"
+        android:layout_width="@dimen/dimen_144"
+        android:layout_height="match_parent"
+        android:src="@mipmap/floor_content" />
+
+    <RelativeLayout
+        android:id="@+id/follow_item_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/follow_item_header">
+
+
+        <TextView
+            android:id="@+id/follow_item_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_12"
+            android:text="@string/boss_text"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/follow_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/follow_item_nick"
+            android:layout_margin="@dimen/dimen_12"
+            android:text="100天，89个瞬间" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    tools:context=".view.vintage.VintageActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/vintage_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:rightColor="@color/main_theme"
+        app:rightTitle="@string/brewing_text"
+        app:title="酝酿中">
+
+    </com.hjq.bar.TitleBar>
+
+    <EditText
+        android:id="@+id/vintage_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vintage_title"
+        android:background="@color/white"
+        android:gravity="start|top"
+        android:hint="酝酿自己的美酒,让别人做一个过客......\uD83D\uDE06"
+        android:lines="5"
+        android:maxLength="400"
+        android:minLines="3"
+        android:padding="@dimen/dimen_22"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_14" />
+
+    <GridView
+        android:id="@+id/vintage_grid_images"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_600"
+        android:layout_below="@+id/vintage_input"
+        android:background="@color/white"
+        android:numColumns="3">
+
+    </GridView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vintage_grid_images"
+        android:paddingRight="@dimen/dimen_44">
+
+        <TextView
+            android:id="@+id/vintage_surplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:text="400" />
+
+        <com.flyco.roundview.RoundTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_14"
+            android:layout_toLeftOf="@+id/vintage_state"
+            android:paddingBottom="@dimen/dimen_14"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_14"
+            android:text="#标签"
+            android:textColor="@color/main_theme"
+            android:visibility="gone"
+            app:rv_backgroundColor="@color/white"
+            app:rv_cornerRadius="@dimen/dimen_24" />
+
+        <!--PopupWindow-->
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/vintage_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_14"
+            android:paddingBottom="@dimen/dimen_14"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_14"
+            android:text="所有人可见 V"
+            app:rv_backgroundColor="@color/white"
+            app:rv_cornerRadius="@dimen/dimen_24" />
+    </RelativeLayout>
+
+    <sakura.bottomtabbar.BottomTabBar
+        android:id="@+id/vintage_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/vintage_fl_content"
+        android:background="@color/white"
+
+        android:visibility="gone">
+        <!--<include layout="@layout/story_tab_layout"/>-->
+    </sakura.bottomtabbar.BottomTabBar>
+
+    <FrameLayout
+        android:id="@+id/vintage_fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+    </FrameLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color><!--导航栏颜色-->
+    <color name="colorPrimaryDark">#817171ea</color><!--通知栏颜色-->
+    <color name="colorAccent">#2858dc</color><!--控件选中后的颜色-->
+
+
+    <!--主色调-->
+    <color name="main_theme">#1041e2</color>
+    <color name="main_theme_dark">#fc921c</color>
+    <color name="main_theme_light">#e9f6f3</color>
+    <color name="light_main_theme">#51ff8600</color>
+    <!--常用颜色-->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="green">#01BE81</color>
+    <color name="red">#ea0f0f</color>
+    <color name="blue">#2ABAFF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="orange">#FF9600</color>
+    <color name="pink">#8f82bc</color>
+
+
+    <color name="orange_dark">#FF7327</color>
+    <color name="pink_dark">#C86AB4</color>
+    <color name="blue_dark">#4a90e2</color>
+    <color name="yellow_dark">#FFE383</color>
+    <color name="red_dark">#fb4e44</color>
+    <color name="over_blue">#3399ff</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="white_light">#E6F5f5f5</color>
+
+    <color name="order_red">#f47c7c</color>
+
+    <!--半黑色-->
+    <color name="black_half" >#7D000000</color>
+    <!-- 全透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 半透明 -->
+    <color name="transparent_half">#e0000000</color>
+    <!--浅透明-->
+    <color name="transparent_light">#80333333</color>
+    <!--中度透明-->
+    <color name="transparent_small">#e0383838</color>
+    <!-- 字体颜色很深 -->
+    <color name="fontcolordark">#333333</color>
+    <!-- 字体颜色深 -->
+    <color name="fontcolordeep">#666666</color>
+    <!-- 字体颜色中 -->
+    <color name="fontcolormiddle">#7b7a87</color>
+    <!-- 字体颜色适中 -->
+    <color name="fontcolorsmall">#999999</color>
+    <!-- 字体颜色浅 -->
+    <color name="fontcolorlight">#c1c1c1</color>
+
+    <!-- 常用灰色 -->
+    <color name="gray">#515151</color>
+    <color name="gray_dark">#717171</color>
+    <color name="gray_deep">#adaeb6</color>
+    <color name="gray_middle">#DCDCDC</color>
+    <color name="gray_small">#e6e6e6</color>
+    <color name="gray_light">#f5f5f5</color>
+
+
+
+    <color name="menu_minus_color">#9b9b9b</color>
+    <color name="address_rv_bg">#eeeeee</color>
+
+
+
+    <color name="colorTextTitle">#333333</color>
+    <color name="colorTextContent">#444444</color>
+    <color name="colorTextAssistant">#888888</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackgroundDark">#f2f2f2</color>
+    <color name="colorDivision">#33aaaaaa</color>
+</resources>

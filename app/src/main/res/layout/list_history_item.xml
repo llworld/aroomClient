@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimenPaddingCommon"
+        android:paddingRight="@dimen/dimenPaddingCommon">
+
+        <TextView
+            android:id="@+id/history_item_time"
+            style="@style/AppTheme.Label"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:text="21:44"
+            android:textColor="@android:color/tertiary_text_dark" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+            android:layout_marginRight="@dimen/dimenPaddingCommon"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="@dimen/dimen_1"
+                android:layout_height="30dp"
+                android:background="#cccccc" />
+
+            <com.flyco.roundview.RoundFrameLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:rv_isRadiusHalfHeight="true"
+                app:rv_strokeColor="#cccccc"
+                app:rv_strokeWidth="@dimen/dimen_1">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:src="@mipmap/floor_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dimenPaddingCommon"
+                    app:srcCompat="@drawable/ic_feed_list_mail" />
+            </com.flyco.roundview.RoundFrameLayout>
+
+            <View
+                android:layout_width="@dimen/dimen_1"
+                android:layout_height="match_parent"
+                android:background="#cccccc" />
+        </LinearLayout>
+
+        <com.flyco.roundview.RoundLinearLayout
+            android:id="@+id/history_item_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="@dimen/dimenPaddingCommon"
+            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"
+            app:rv_strokeColor="#cccccc"
+            app:rv_strokeWidth="@dimen/dimen_1">
+
+            <TextView
+                style="@style/AppTheme.Label.Title"
+                android:layout_gravity="center_vertical"
+                android:text="斯坦芬·诺加德·安徒生 "
+                android:textColor="@android:color/tertiary_text_dark" />
+
+            <TextView
+                android:id="@+id/history_item_content"
+                style="@style/AppTheme.Label.Description"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
+                android:text="洛雷姆·伊普索姆·多尔坐在阿米特的座位上，他是一位敬业的精英，他用自己的节奏激励着劳尔和马格纳·阿利卡。但至少有一点不便，那就是要做一些不必要的事情。 "
+                android:textColor="@android:color/tertiary_text_dark" />
+
+            <GridView
+                android:id="@+id/history_item_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="1">
+
+            </GridView>
+
+        </com.flyco.roundview.RoundLinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/left_time"
+        android:layout_width="@dimen/dimen_144"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="@dimen/dimen_5"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/main_theme" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_10" />
+
+        <TextView
+            android:layout_width="@dimen/dimen_5"
+            android:layout_height="@dimen/dimen_10"
+            android:layout_centerHorizontal="true"
+            android:background="@color/main_theme" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/timelline_dot" />
+
+        <TextView
+            android:layout_width="@dimen/dimen_5"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/main_theme" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dimen_24"
+        android:layout_marginTop="@dimen/dimen_24"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_44"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水电费水电费" />
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="1">
+
+        </GridView>
+    </RelativeLayout>
+
+</LinearLayout>

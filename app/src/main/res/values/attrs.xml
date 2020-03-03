@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="zmsTabTextSize" format="dimension" />
+        <attr name="zmsTabTextColor" format="color" />
+        <attr name="zmsSelectedTabTextSize" format="dimension" />
+        <attr name="zmsSelectedTabTextColor" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StaggeredGridView">
+        <attr name="drawSelectorOnTop" format="boolean" />
+        <attr name="numColumns" format="integer" />
+        <attr name="itemMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TasksCompletedView">
+        <!--<attr name="radius" format="dimension" />-->
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="circleColor" format="color" />
+        <attr name="ringColor" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
+        <attr name="roundWidth" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer" />
+        <attr name="textIsDisplayable" format="boolean" />
+        <attr name="style">
+            <enum name="STROKE" value="0" />
+            <enum name="FILL" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="TimerTextView">
+        <attr name="timeDay" format="string" />
+        <attr name="timeHour" format="string" />
+        <attr name="timeMinute" format="string" />
+        <attr name="timeSecond" format="string" />
+        <attr name="timeTextSize" format="dimension" />
+        <attr name="rootVisibility" format="enum">
+            <enum name="gone" value="0" />
+            <enum name="visible" value="1" />
+            <enum name="invisible" value="2" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="PickerView">
+        <attr name="isLoop" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="HeaderViewPager">
+        <attr name="hvp_topOffset" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RatingBar">
+        <!--尺寸值-->
+        <attr name="starImageSize" format="dimension" />
+        <!--星星间距-->
+        <attr name="starPadding" format="dimension" />
+        <!--星星总数-->
+        <attr name="starCount" format="integer" />
+        <!--空白的星星资源文件值-->
+        <attr name="starEmpty" format="reference" />
+        <!--满星资源文件值-->
+        <attr name="starFill" format="reference" />
+        <!--半星资源文件值-->
+        <attr name="starHalf" format="reference" />
+        <!--是否可点击boolean值-->
+        <attr name="clickable" format="boolean" />
+        <!--当前进度float值-->
+        <attr name="starStep" format="float" />
+        <!--每次进度方式的值，整星还是半星-->
+        <attr name="stepSize">
+            <enum name="Half" value="0" />
+            <enum name="Full" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="ParallaxViewPager">
+        <attr name="mode">
+            <enum name="left_overlay" value="0" />
+            <enum name="right_overlay" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="outset" format="fraction|dimension" />
+        <attr name="interpolator" format="reference" />
+        <attr name="shadow_width" format="dimension" />
+        <attr name="left_shadow" format="reference" />
+        <attr name="right_shadow" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer" />
+        <attr name="progress_max" format="integer" />
+
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+
+        <attr name="progress_text_offset" format="dimension" />
+
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="numberProgressBarStyle" format="reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.aroominn.aroom">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/temp_app"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="k51hidwqkcx3b"
+            tools:replace="android:value" />
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.aroominn.aroom"
+                    android:path="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 忘记密码 -->
+        <activity android:name=".view.login.ForgetActivity" />
+        <!-- 故事详情 -->
+        <activity android:name=".view.inn.StoryActivity" />
+        <!-- 关注 -->
+        <activity android:name=".view.message.FollowActivity" />
+        <!-- 更多设置 -->
+        <activity android:name=".view.mine.setting.SettingActivity" />
+        <!-- 消息设置 -->
+        <activity android:name=".view.mine.setting.NotifyActivity" />
+        <!-- 个人中心 -->
+        <activity android:name=".view.mine.personal.PersonalActivity" />
+        <!-- 聊天 -->
+        <activity android:name=".view.message.ChatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.aroominn.aroom"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <!-- 故事回复消息 -->
+        <activity android:name=".view.inn.NoticeActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.aroominn.aroom.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+
+        <activity android:name=".view.mine.personal.HostelActivity" />
+        <activity android:name=".view.mine.personal.PhoneActivity" />
+        <activity android:name=".view.mine.personal.CharacterActivity" />
+        <activity android:name=".view.mine.personal.PasswordActivity" />
+        <activity android:name=".view.inn.HomepageActivity" />
+        <activity android:name=".view.vintage.VintageActivity" />
+        <activity android:name=".view.vintage.LabelActivity" />
+        <activity android:name=".view.mine.setting.AboutActivity" />
+        <activity android:name=".view.mine.personal.HeadActivity" />
+
+        <!--
+           <activity
+               android:name="io.rong.fast.activity.ConversationListActivity"
+               android:screenOrientation="portrait"
+               android:windowSoftInputMode="stateHidden|adjustResize">
+               <intent-filter>
+                   <action android:name="android.intent.action.VIEW" />
+
+                   <category android:name="android.intent.category.DEFAULT" />
+
+                   <data
+                       android:host="${applicationId}"
+                       android:pathPrefix="/conversationlist"
+                       android:scheme="rong" />
+               </intent-filter>
+           </activity>
+        -->
+
+
+        <!--
+               <meta-data
+               android:name="RONG_CLOUD_APP_KEY"
+               android:value="25wehl3u200lw"
+               tools:replace="android:value" />
+        -->
+        <!-- tools:replace="android:value" -->
+
+
+        <!-- IMNotificationReceiver 融云推送 -->
+        <receiver
+            android:name=".receiver.IMNotificationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
+                <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+                <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".view.message.SysMessageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.aroominn.aroom"
+                    android:pathPrefix="/push_message"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="@dimen/dimen_90"
+             android:layout_alignParentBottom="true">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_90"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="5">
+        <!--首页-->
+        <FrameLayout
+            android:id="@+id/frame_fm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/main_fm_tab"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:scaleType="centerInside"
+                android:src="@drawable/fm_tab_selector"/>
+
+            <TextView
+                android:id="@+id/main_fm_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:text="电台"
+                android:textColor="@color/home_tab_text_color"
+                android:textSize="@dimen/font_10"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/main_message_tab"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:scaleType="centerInside"
+                android:src="@drawable/home_tab_selector"/>
+
+            <TextView
+                android:id="@+id/main_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:text="@string/message_text"
+                android:textColor="@color/home_tab_text_color"
+                android:textSize="@dimen/font_10"/>
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/frame_vintage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/main_vintage_tab"
+                android:layout_width="@dimen/dimen_64"
+                android:layout_height="@dimen/dimen_64"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/vintage_icon"/>
+
+            <TextView
+                android:id="@+id/main_vintage_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:text="发布"
+                android:textColor="@color/home_tab_text_color"
+                android:textSize="@dimen/font_10"/>
+        </FrameLayout>
+        <!--发现-->
+        <FrameLayout
+            android:id="@+id/frame_inn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/main_inn_tab"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:scaleType="centerInside"
+                android:src="@drawable/inn_tab_selector"/>
+
+            <TextView
+                android:id="@+id/main_inn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:text="@string/inn_text"
+                android:textColor="@color/home_tab_text_color"
+                android:textSize="@dimen/font_10"/>
+        </FrameLayout>
+
+        <!--我的-->
+        <FrameLayout
+            android:id="@+id/frame_mine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/main_mine_tab"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:scaleType="centerInside"
+                android:src="@drawable/mine_tab_selector"/>
+
+            <TextView
+                android:id="@+id/main_mine_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:text="@string/mine_text"
+                android:textColor="@color/home_tab_text_color"
+                android:textSize="@dimen/font_10"/>
+        </FrameLayout>
+
+
+
+
+
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.mine.personal.HostelActivity">
+
+    <com.hjq.bar.TitleBar
+        app:rightTitle="修改"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:title="修改客栈名">
+
+    </com.hjq.bar.TitleBar>
+
+    <EditText
+        android:layout_marginTop="@dimen/dimen_44"
+        android:hint="客栈的名字"
+        android:paddingLeft="@dimen/dimen_88"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_88"
+        android:background="@color/white" />
+
+    <!--<View
+        style="@style/line_view"
+        android:layout_marginRight="@dimen/dimen_88" />-->
+
+
+</LinearLayout>

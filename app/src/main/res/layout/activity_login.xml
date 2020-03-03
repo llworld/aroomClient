@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.login.LoginActivity">
+
+    <TextView
+        android:id="@+id/login_txt_aroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_120"
+        android:text="一间"
+        android:textColor="@color/black"
+
+        android:textSize="@dimen/font_26" />
+
+    <com.aroominn.aroom.utils.customview.PagerSlidingTabStrip
+        android:id="@+id/login_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100"
+        android:layout_below="@+id/login_txt_aroom"
+        android:layout_marginTop="@dimen/dimen_48"
+        android:background="@color/white"
+        android:foregroundGravity="center"
+        app:pstsDividerColor="@color/transparent"
+        app:pstsIndicatorColor="@color/main_theme"
+        app:pstsIndicatorHeight="@dimen/dimen_4"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineColor="@color/black_half"
+        app:pstsUnderlineHeight="@dimen/dimen_2"
+        app:zmsSelectedTabTextColor="@color/fontcolordark"
+        app:zmsSelectedTabTextSize="@dimen/font_18"
+        app:zmsTabTextColor="@color/fontcolordeep"
+        app:zmsTabTextSize="@dimen/font_10">
+
+    </com.aroominn.aroom.utils.customview.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/login_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_tab">
+
+    </android.support.v4.view.ViewPager>
+
+    <RelativeLayout
+        android:id="@+id/login_three_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_2"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/login_three_text"
+            android:background="@drawable/login_left_line" />
+
+        <TextView
+            android:id="@id/login_three_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dimen_40"
+            android:layout_marginRight="@dimen/dimen_40"
+            android:text="@string/login_three_text"
+            android:textColor="@color/main_theme"
+            android:textSize="@dimen/font_12" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/login_three_text"
+            android:background="@drawable/login_right_line" />
+    </RelativeLayout>
+</RelativeLayout>

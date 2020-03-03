@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#bc2b2a2a">
+
+    <RadioGroup
+        android:id="@+id/popup_radio"
+        android:padding="@dimen/dimen_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/story_state_all"
+            android:textColor="@color/gray_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所有人可见" />
+
+        <RadioButton
+            android:textColor="@color/gray_light"
+            android:id="@+id/story_state_waiter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小二可见" />
+
+        <RadioButton
+            android:textColor="@color/gray_light"
+            android:id="@+id/story_state_mate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="知己可见" />
+        <RadioButton
+            android:id="@+id/story_state_me"
+            android:textColor="@color/gray_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自己可见" />
+    </RadioGroup>
+
+</RelativeLayout>

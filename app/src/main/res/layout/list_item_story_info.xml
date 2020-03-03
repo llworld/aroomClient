@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_10"
+    android:background="@color/white">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/story_info_item_head"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="@dimen/dimen_80"
+        android:layout_margin="@dimen/dimen_8"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/story_info_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6"
+        android:layout_toRightOf="@+id/story_info_item_head"
+        android:text="柴米油盐"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/story_info_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/story_info_nick"
+        android:layout_margin="@dimen/dimen_6"
+        android:layout_toRightOf="@+id/story_info_item_head"
+        android:text="3分钟前"
+        android:textColor="@color/black_half"
+        android:textSize="@dimen/font_12" />
+
+    <TextView
+        android:id="@+id/story_info_floor"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/story_info_item_head"
+        android:layout_margin="@dimen/dimen_8"
+        android:text="33楼" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/dimen_44"
+        android:src="@drawable/like_nor" />
+
+    <TextView
+        android:id="@+id/story_info_reply_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/story_info_item_head"
+        android:layout_toRightOf="@+id/story_info_floor"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:layout_marginBottom="@dimen/dimen_12"
+        android:text="回复楼主你可真秀"/>
+
+
+
+
+</RelativeLayout>

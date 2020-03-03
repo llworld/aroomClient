@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.mine.personal.PersonalActivity">
+
+    <com.aroominn.aroom.utils.customview.TitleBar
+        android:id="@+id/personal_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.aroominn.aroom.utils.customview.TitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_title"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/personal_head_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/mine_icon"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="头像" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/per_image"
+                android:layout_width="@dimen/dimen_88"
+                android:layout_height="@dimen/dimen_88"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dimen_44"
+                android:src="@mipmap/ic_launcher" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:id="@+id/personal_nick_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_name"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="客栈" />
+
+            <TextView
+                android:id="@+id/per_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="有一家客栈" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:id="@+id/personal_sex_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_sex"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="性别" />
+
+            <TextView
+                android:id="@+id/per_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="男" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:id="@+id/personal_phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="手机号" />
+
+            <TextView
+                android:id="@+id/per_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="18888888888" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:id="@+id/personal_tag_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_tag"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="个人标签" />
+
+            <TextView
+                android:id="@+id/per_category"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="肥宅" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:background="@color/gray_light" />
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:id="@+id/personal_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_password"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="修改密码" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_view" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/personal_email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/icon_email"
+                android:drawablePadding="@dimen/dimen_8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_24"
+                android:text="绑定邮箱" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="@dimen/dimen_8"
+                android:drawableRight="@drawable/right_icon"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/dimen_44"
+                android:text="未绑定" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_marginHorizontal="@dimen/dimen_48"
+                android:layout_marginTop="@dimen/dimen_48"
+                android:textSize="@dimen/font_18"
+                android:textColor="@color/white"
+                android:text="退出"
+                android:background="@drawable/logout_btn_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

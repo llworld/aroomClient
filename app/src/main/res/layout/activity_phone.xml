@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.mine.personal.PhoneActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="修改手机号">
+
+    </com.hjq.bar.TitleBar>
+
+    <com.flyco.roundview.RoundLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_phone"
+        android:layout_margin="@dimen/dimen_44"
+        android:background="@color/green"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_24"
+        app:rv_backgroundColor="@color/white"
+        app:rv_cornerRadius="@dimen/dimen_24">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88"
+            android:background="@color/white"
+            android:hint="原手机号"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/dimen_14"
+            android:textSize="@dimen/font_14" />
+
+        <View
+            style="@style/line_view"
+            android:layout_marginLeft="@dimen/dimen_4" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88"
+
+            android:background="@color/white"
+            android:hint="新手机号"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/dimen_14"
+            android:textSize="@dimen/font_14" />
+
+        <View
+            style="@style/line_view"
+            android:layout_marginLeft="@dimen/dimen_4" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_88"
+                android:layout_toLeftOf="@+id/phone_getVcode"
+                android:background="@color/white"
+                android:hint="新手机号"
+                android:inputType="phone"
+                android:paddingLeft="@dimen/dimen_14"
+                android:textSize="@dimen/font_14" />
+
+            <com.deadline.statebutton.StateButton
+                android:id="@+id/phone_getVcode"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_68"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textSize="@dimen/font_10"
+                app:normalBackgroundColor="@color/gray_small"
+                app:unableBackgroundColor="@color/main_theme" />
+
+            <View
+                style="@style/line_view"
+                android:layout_below="@+id/phone_getVcode"
+                android:layout_marginLeft="@dimen/dimen_4"
+                android:layout_marginTop="@dimen/dimen_4" />
+        </RelativeLayout>
+
+
+        <com.deadline.statebutton.StateButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_78"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dimen_44"
+            android:layout_marginTop="@dimen/dimen_444"
+            android:gravity="center"
+            android:text="修改"
+            app:normalBackgroundColor="@color/gray_small"
+            app:unableBackgroundColor="@color/main_theme" />
+
+    </com.flyco.roundview.RoundLinearLayout>
+
+</RelativeLayout>

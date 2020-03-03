@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aroominn.aroom.utils.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_168"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    app:ios="false"
+    app:leftSwipe="true"
+    app:swipeEnable="true">
+
+    <RelativeLayout
+        android:id="@+id/message_item_content"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/message_item_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_24"
+            android:layout_marginRight="@dimen/dimen_24"
+            android:src="@mipmap/ic_launcher" />
+
+
+
+    <TextView
+            android:id="@+id/message_item_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_12"
+            android:layout_toRightOf="@+id/message_item_header"
+            android:text="掌柜的"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/message_item_nick"
+            android:layout_margin="@dimen/dimen_12"
+            android:layout_toRightOf="@+id/message_item_header"
+            android:text="有茶有酒有时间"
+            android:textColor="@color/black_half" />
+
+        <TextView
+            android:id="@+id/message_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_24"
+            android:text="16:43" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/message_item_time"
+            android:layout_marginRight="@dimen/dimen_44"
+            android:text="+1"
+            android:textColor="@color/red" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/message_item_stick"
+        android:textColor="@color/white"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:text="置顶"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/message_item_delete"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="删除"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</com.aroominn.aroom.utils.SwipeMenuLayout>

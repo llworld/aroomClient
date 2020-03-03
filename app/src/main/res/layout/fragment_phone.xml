@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/phone_getVcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_130"
+        android:layout_marginTop="@dimen/dimen_120"
+        android:background="@color/gray_deep"
+        android:clickable="true"
+        android:padding="@dimen/dimen_8"
+        android:text="@string/get_vcode_text"
+        android:textSize="@dimen/font_9" />
+
+
+    <EditText
+        android:id="@+id/phone_phone_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_120"
+        android:layout_toLeftOf="@+id/phone_getVcode"
+        android:background="@null"
+        android:hint="@string/input_phone"
+        android:inputType="phone"
+        android:textSize="@dimen/font_16" />
+
+    <View
+        style="@style/line_view"
+        android:layout_below="@+id/phone_phone_et"
+        android:layout_marginHorizontal="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/gray" />
+
+
+    <EditText
+        android:id="@+id/phone_vcode_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone_phone_et"
+        android:layout_marginHorizontal="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_48"
+        android:background="@null"
+        android:hint="@string/input_vcode"
+        android:inputType="number"
+        android:textSize="@dimen/font_16" />
+
+    <View
+        style="@style/line_view"
+        android:layout_below="@+id/phone_vcode_et"
+        android:layout_marginHorizontal="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/gray" />
+
+    <Button
+
+        android:id="@+id/phone_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone_vcode_et"
+        android:layout_marginHorizontal="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_80"
+        android:background="@drawable/login_btn_bg"
+        android:enabled="true"
+        android:gravity="center"
+        android:padding="@dimen/dimen_12"
+        android:text="@string/login_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_20" />
+
+</RelativeLayout>

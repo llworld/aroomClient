@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.aroominn.aroom.utils.customview.PagerSlidingTabStrip
+        android:id="@+id/inn_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100"
+        app:pstsDividerColor="@color/transparent"
+        app:pstsIndicatorColor="@color/main_theme"
+        app:pstsIndicatorHeight="@dimen/dimen_4"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineColor="@color/gray_middle"
+        app:pstsUnderlineHeight="@dimen/dimen_2"
+        app:zmsSelectedTabTextColor="@color/main_theme"
+        app:zmsSelectedTabTextSize="@dimen/font_13"
+        app:zmsTabTextColor="@color/fontcolormiddle"
+        app:zmsTabTextSize="@dimen/font_12">
+
+    </com.aroominn.aroom.utils.customview.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/inn_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inn_tab">
+
+    </android.support.v4.view.ViewPager>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/inn_notice"
+        android:layout_width="@dimen/dimen_100"
+        android:layout_height="@dimen/dimen_100"
+        android:padding="@dimen/dimen_10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/dimen_20"
+        android:background="@drawable/notice_border_bg"
+        android:src="@drawable/notice" />
+
+
+</RelativeLayout>

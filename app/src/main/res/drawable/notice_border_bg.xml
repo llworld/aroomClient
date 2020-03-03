@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!--弧度-->
+            <corners android:radius="@dimen/dimen_500" />
+            <!--实心-->
+            <solid android:color="@color/white" />
+            <!--边-->
+            <stroke android:color="@color/gray_deep" android:width="@dimen/dimen_2"/>
+
+        </shape>
+    </item>
+</selector>

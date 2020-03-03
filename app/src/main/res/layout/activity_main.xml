@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom_diver"
+        android:background="@color/white"/>
+
+    <View
+        android:id="@id/main_bottom_diver"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_2"
+        android:layout_above="@+id/main_bottom_bar"
+        android:background="@color/gray_small"/>
+
+    <!-- 引入底部布局 -->
+    <include
+        android:id="@+id/main_bottom_bar"
+        layout="@layout/main_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

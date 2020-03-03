@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.message.ChatActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/chat_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.hjq.bar.TitleBar>
+    <fragment
+        android:layout_below="@+id/chat_title"
+        android:id="@+id/conversation"
+        android:name="io.rong.imkit.fragment.ConversationFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_above="@+id/chat_send_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/chat_send_input"
+        android:layout_above="@+id/chat_bottom_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_88"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:lines="3"
+            android:layout_toLeftOf="@+id/chat_send"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88" />
+
+        <Button
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:layout_marginRight="@dimen/dimen_8"
+            android:id="@+id/chat_send"
+            android:layout_alignParentRight="true"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:visibility="gone"
+        android:id="@+id/chat_bottom_group"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_90"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+       <RelativeLayout
+           android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <ImageView
+               android:layout_centerHorizontal="true"
+               android:layout_centerVertical="true"
+               android:src="@drawable/images_icon"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+       </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/aite_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/microphone_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/smile_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </RadioGroup>
+
+</RelativeLayout>

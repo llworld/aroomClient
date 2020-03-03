@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.inn.StoryActivity">
+
+    <com.aroominn.aroom.utils.customview.TitleBar
+        android:id="@+id/story_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.aroominn.aroom.utils.customview.TitleBar>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+
+        android:id="@+id/story_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/story_comment_layout"
+        android:layout_below="@+id/story_title">
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/story_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/story_comment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_light">
+
+        <EditText
+            android:id="@+id/story_comment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_8"
+            android:layout_toLeftOf="@+id/story_send"
+            android:background="@drawable/comment_input"
+            android:hint="说点什么吧......"
+            android:maxLines="4"
+            android:padding="@dimen/dimen_12"
+            android:textSize="@dimen/font_14" />
+
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/story_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_12"
+            android:paddingHorizontal="@dimen/dimen_20"
+            android:paddingVertical="@dimen/dimen_12"
+            android:text="评论"
+            android:textColor="@color/white"
+            app:rv_backgroundColor="@color/colorAccent"
+            app:rv_backgroundPressColor="@color/main_theme"
+            app:rv_cornerRadius="@dimen/dimen_8" />
+    </RelativeLayout>
+</RelativeLayout>

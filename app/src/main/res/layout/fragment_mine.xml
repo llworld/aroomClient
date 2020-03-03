@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <ImageView
+        android:id="@+id/mine_parallax"
+        android:layout_width="match_parent"
+        android:layout_height="670dp"
+        android:layout_marginTop="-300dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/image_weibo_home_2"
+        app:layout_collapseMode="parallax" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/mine_refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnablePreviewInEditMode="false">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="@android:color/white" />
+
+        <com.aroominn.aroom.utils.customview.JudgeNestedScrollView
+            android:id="@+id/mine_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:focusable="true"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.CollapsingToolbarLayout
+                        android:id="@+id/mine_collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                        app:titleEnabled="false">
+
+                        <RelativeLayout
+                            android:id="@+id/mine_panel_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="200dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/mine_panel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="40dp"
+                                android:background="@android:color/white"
+                                android:paddingBottom="@dimen/dimen_20"
+                                android:paddingLeft="@dimen/dimen_30"
+                                android:paddingRight="@dimen/dimen_30"
+                                android:paddingTop="@dimen/dimen_20">
+
+                                <com.flyco.roundview.RoundTextView
+                                    android:id="@+id/mine_attention"
+                                    style="@style/AppTheme.Label"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingBottom="8dp"
+                                    android:paddingLeft="25dp"
+                                    android:paddingRight="25dp"
+                                    android:paddingTop="8dp"
+                                    android:text="关注"
+                                    android:textColor="@android:color/white"
+                                    android:visibility="gone"
+                                    app:rv_backgroundColor="@color/colorPrimary"
+                                    app:rv_cornerRadius="@dimen/dimenPaddingDiminutive" />
+
+                                <com.flyco.roundview.RoundTextView
+                                    android:id="@+id/mine_leaveword"
+                                    style="@style/AppTheme.Label"
+                                    android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                                    android:layout_marginRight="@dimen/dimenPaddingCommon"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_toLeftOf="@id/mine_attention"
+                                    android:layout_toStartOf="@id/mine_attention"
+                                    android:paddingBottom="8dp"
+                                    android:paddingLeft="25dp"
+                                    android:paddingRight="25dp"
+                                    android:paddingTop="8dp"
+                                    android:text="留言"
+                                    android:textColor="@color/colorPrimary"
+                                    android:visibility="gone"
+                                    app:rv_backgroundColor="@android:color/white"
+                                    app:rv_cornerRadius="3dp"
+                                    app:rv_strokeColor="@color/colorPrimary"
+                                    app:rv_strokeWidth="@dimen/dimen_1"
+                                    app:rv_textPressColor="@android:color/white" />
+
+                                <TextView
+                                    android:id="@+id/mine_nickname"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dimen_84"
+                                    android:text="一醉方休" />
+
+                                <LinearLayout
+                                    android:id="@+id/mine_relationship"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/mine_nickname"
+                                    android:layout_marginTop="@dimen/dimenPaddingCommon">
+
+                                    <TextView
+                                        android:id="@+id/mine_relationship_attention"
+                                        style="@style/AppTheme.Label"
+                                        android:text="关注 84 " />
+
+                                    <TextView
+                                        style="@style/AppTheme.Label"
+                                        android:layout_marginLeft="@dimen/dimenPaddingHorizontal"
+                                        android:layout_marginRight="@dimen/dimenPaddingHorizontal"
+                                        android:text="|" />
+
+                                    <TextView
+                                        android:id="@+id/mine_relationship_fans"
+                                        style="@style/AppTheme.Label"
+                                        android:text="粉丝 62" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/mine_signature"
+                                    style="@style/AppTheme.Label.Description"
+                                    android:layout_below="@id/mine_relationship"
+                                    android:layout_marginTop="@dimen/dimenPaddingCommon"
+                                    android:text="这个人很懒，什么也没留下..."
+                                    android:textColor="@color/red" />
+
+                            </RelativeLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/mine_header"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                                android:layout_marginStart="@dimen/dimenPaddingCommon"
+                                android:src="@mipmap/image_avatar_5"
+                                app:civ_border_color="@android:color/white"
+                                app:civ_border_overlay="true"
+                                app:civ_border_width="3dp" />
+
+                            <TextView
+                                android:id="@+id/mine_visitor"
+                                style="@style/AppTheme.Label.Layout"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:background="?attr/selectableItemBackground"
+                                android:shadowColor="#aa000000"
+                                android:shadowDx="2.5"
+                                android:shadowDy="2.5"
+                                android:shadowRadius="10"
+                                android:text="访客总量 15"
+                                android:textColor="@android:color/white" />
+
+                            <View
+                                style="@style/AppTheme.Division"
+                                android:layout_alignParentBottom="true" />
+                        </RelativeLayout>
+
+
+                    </android.support.design.widget.CollapsingToolbarLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f2f2f2"
+                        android:orientation="vertical"
+                        android:paddingBottom="0dp"
+                        app:layout_scrollFlags="scroll">
+
+                        <LinearLayout
+                            style="@style/AppTheme.CommonBar.Panel"
+                            android:background="#33aaaaaa"
+                            android:paddingBottom="@dimen/dimen_1"
+                            android:paddingTop="@dimen/dimen_1">
+
+                            <LinearLayout
+                                android:id="@+id/mine_fmc_center_dynamic"
+                                style="@style/AppTheme.CommonBar.Bar"
+                                android:background="@android:color/white">
+
+                                <TextView
+                                    style="@style/AppTheme.CommonBar.Content.Value"
+                                    android:text="发布动态" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/mine_tableLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/mine_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:focusable="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.aroominn.aroom.utils.customview.JudgeNestedScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <!--<RelativeLayout
+        android:id="@+id/mine_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_600"
+        android:background="#ca485df7"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_44"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_17" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/dimen_120"
+            android:layout_height="@dimen/dimen_120"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_120"
+            android:src="@drawable/temp_app" />
+
+        <TextView
+            android:id="@+id/mine_inn_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_24"
+            android:drawablePadding="@dimen/dimen_24"
+            android:drawableRight="@drawable/mine_focus"
+            android:text="有家客栈"
+            android:textColor="@color/white" />
+
+        <com.aroominn.aroom.utils.customview.PagerSlidingTabStrip
+            android:id="@+id/mine_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@color/transparent"
+            app:pstsDividerColor="@color/main_theme"
+            app:pstsIndicatorColor="@color/transparent"
+            app:pstsIndicatorHeight="@dimen/dimen_4"
+            app:pstsShouldExpand="true"
+            app:pstsTabBackground="@color/transparent"
+            app:pstsUnderlineColor="@color/transparent"
+            app:pstsUnderlineHeight="@dimen/dimen_2"
+            app:zmsSelectedTabTextColor="@color/main_theme"
+            app:zmsSelectedTabTextSize="@dimen/font_14"
+            app:zmsTabTextColor="@color/white"
+            app:zmsTabTextSize="@dimen/font_12">
+
+        </com.aroominn.aroom.utils.customview.PagerSlidingTabStrip>
+
+    </RelativeLayout>-->
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mine_toolbar"
+        style="@style/AppTheme.Toolbar"
+        android:layout_marginBottom="0dp"
+        android:background="@android:color/transparent"
+        app:layout_collapseMode="pin">
+
+        <android.support.v7.widget.ButtonBarLayout
+            android:id="@+id/mine_buttonBarLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/mine_toolbar_avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/dimenPaddingDiminutive"
+                android:layout_marginRight="@dimen/dimenPaddingDiminutive"
+                android:src="@mipmap/image_avatar_5"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_overlay="true"
+                app:civ_border_width="@dimen/dimen_1" />
+
+            <TextView
+                android:id="@+id/mine_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="一醉方休"
+                android:textSize="16sp" />
+
+
+        </android.support.v7.widget.ButtonBarLayout>
+
+        <ImageView
+            android:paddingRight="@dimen/dimen_24"
+            android:paddingLeft="@dimen/dimen_24"
+            android:id="@+id/mine_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:src="@drawable/setting_icon" />
+
+    </android.support.v7.widget.Toolbar>
+
+</RelativeLayout>
