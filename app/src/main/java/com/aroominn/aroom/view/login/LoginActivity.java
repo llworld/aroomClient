@@ -42,7 +42,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
 
-
+        //关闭、滑动退出activity
+        setSwipeBackEnable(false);
         boolean te = SharedUtils.getInstance().getLogin();
         if (SharedUtils.getInstance().getLogin()) {
             startActivity(new Intent(this, MainActivity.class));

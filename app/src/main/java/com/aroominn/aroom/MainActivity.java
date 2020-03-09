@@ -1,10 +1,14 @@
 package com.aroominn.aroom;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,12 +23,15 @@ import com.aroominn.aroom.base.BaseActivity;
 import com.aroominn.aroom.utils.Const;
 import com.aroominn.aroom.utils.L;
 import com.aroominn.aroom.utils.SharedUtils;
-import com.aroominn.aroom.utils.StatusBarUtils;
+import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.im.IMListener;
+import com.aroominn.aroom.utils.rongcloud.NotificationChannelUtil;
 import com.aroominn.aroom.view.inn.InnFragment;
 import com.aroominn.aroom.view.message.MessageFragment;
 import com.aroominn.aroom.view.mine.MineFragment;
 import com.aroominn.aroom.view.radio.RadioFragment;
+import com.aroominn.aroom.view.vintage.VintageActivity;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +45,7 @@ import io.rong.imlib.RongIMClient;
  * 查看smartrefresh demo 优化此布局
  */
 public class MainActivity extends BaseActivity {
+
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;
@@ -87,34 +95,35 @@ public class MainActivity extends BaseActivity {
     // 当前fragment的index
     private int currentTabIndex;
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void initView(Bundle savedInstanceState) {
 //        StatusBarUtil.setTransparent(this);
-        boolean te = SharedUtils.getInstance().getLogin();
+        NotificationChannelUtil s=new NotificationChannelUtil();
 
         mFragManager = getSupportFragmentManager();
         fragments = new HashMap<>();
 
-        fragments.put(0, RadioFragment.TAG);
-        fragments.put(1, MessageFragment.TAG);
-        fragments.put(2, InnFragment.TAG);
-        fragments.put(3, MineFragment.TAG);
+//        fragments.put(0, RadioFragment.TAG);
+        fragments.put(0, MessageFragment.TAG);
+        fragments.put(1, InnFragment.TAG);
+        fragments.put(2, MineFragment.TAG);
 
-        mTabs = new FrameLayout[4];
-        mTabs[0] = frameRadio;
-        mTabs[1] = frameHome;
-        mTabs[2] = frameOrder;
-        mTabs[3] = frameMine;
+        mTabs = new FrameLayout[3];
+//        mTabs[0] = frameRadio;
+        mTabs[0] = frameHome;
+        mTabs[1] = frameOrder;
+        mTabs[2] = frameMine;
 
-        StatusBarUtils.StatusBarLightMode(this, StatusBarUtils.StatusBarLightMode(this));
+//        StatusBarUtil.StatusBarLightMode(this, StatusBarUtil.StatusBarLightMode(this));
 
     }
 
     @Override
     public void setListener() {
 
-        L.e("融云IM连接状态" +
-                RongIM.getInstance().getCurrentConnectionStatus().getMessage() + RongIM.getInstance().getCurrentConnectionStatus().getValue());
         if (RongIM.getInstance().getCurrentConnectionStatus() ==
                 RongIMClient.ConnectionStatusListener.ConnectionStatus.DISCONNECTED) {
             RongIM.connect(SharedUtils.getInstance().getToken(), IMListener.getInstance().getConnectCallback());
@@ -191,7 +200,7 @@ public class MainActivity extends BaseActivity {
         setIntent(intent);
         firstLogin = getIntent().getBooleanExtra("first", false);
         if (firstLogin) {
-            refreshUI(0);
+            refreshUI(1);
         }
     }
 
@@ -204,20 +213,20 @@ public class MainActivity extends BaseActivity {
                 refreshUI(index);
                 break;
             case R.id.frame_message:
-                index = 1;
+                index = 0;
                 refreshUI(index);
                 break;
             case R.id.frame_inn:
-                index = 2;
+                index = 1;
                 refreshUI(index);
                 break;
             case R.id.frame_mine:
-                index = 3;
+                index = 2;
                 refreshUI(index);
                 break;
 
             case R.id.frame_vintage:
-//                startActivity(new Intent(MainActivity.this, VintageActivity.class));
+                startActivity(new Intent(MainActivity.this, VintageActivity.class));
                 break;
         }
     }

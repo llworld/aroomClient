@@ -17,7 +17,7 @@ public class ImagesListAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater mInflater;//布局装载器对象
-    private List<String> list=new ArrayList<>();
+    private List<String> list = new ArrayList<>();
 
     public ImagesListAdapter(Context context, List<String> list) {
         this.context = context;
@@ -49,7 +49,7 @@ public class ImagesListAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_item_images, null);
             holder = new ViewHolder();
 //            holder.textView = (TextView) convertView.findViewById(R.id.textview_item);
-            holder.imageView =  convertView.findViewById(R.id.list_item_image);
+            holder.imageView = convertView.findViewById(R.id.list_item_image);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -57,6 +57,7 @@ public class ImagesListAdapter extends BaseAdapter {
         // 设置控件的数据
         Glide.with(convertView)
                 .load(list.get(i))
+                .thumbnail(0.1f)
                 .into(holder.imageView);
 
 //        GridItem item = mGridData.get(position);
@@ -64,6 +65,7 @@ public class ImagesListAdapter extends BaseAdapter {
 //        Picasso.with(mContext).load(item.getImage()).into(holder.imageView);
         return convertView;
     }
+
     // ViewHolder用于缓存控件
     class ViewHolder {
         public ImageView imageView;

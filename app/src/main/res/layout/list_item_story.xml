@@ -47,14 +47,19 @@
         android:text="有的人，只剩下了一个名字，却怎么也舍不得删去；有的情，只留下了一段回忆，却无论如何也不能忘记。"
         android:textColor="@color/black" />
 
-    <GridView
+    <!--this is ok-->
+    <com.aroominn.aroom.utils.customview.MyGridView
         android:id="@+id/story_item_grid"
+        android:layout_below="@+id/story_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/story_item_content"
-        android:numColumns="3">
+        android:layout_margin="10dp"
+        android:columnWidth="@dimen/dimen_200"
+        android:gravity="center"
 
-    </GridView>
+        android:numColumns="auto_fit">
+
+    </com.aroominn.aroom.utils.customview.MyGridView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -75,7 +80,6 @@
             app:btn_color="@color/gray_dark"
             app:btn_fill_color="@color/red_dark"
             app:click_animation_duration="200"
-
             app:enable_flashing="false"
             app:shine_animation_duration="1500"
             app:shine_count="8"
@@ -90,13 +94,36 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dimen_44"
-            android:layout_toLeftOf="@+id/story_item_repost"
+            android:layout_toLeftOf="@+id/story_item_collect"
             android:drawableLeft="@drawable/comment_icon"
             android:drawablePadding="@dimen/dimen_10"
             android:gravity="center"
             android:text="" />
 
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/story_item_collect"
+            android:layout_width="@dimen/dimen_44"
+            android:layout_height="@dimen/dimen_44"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/dimen_44"
+            android:layout_alignParentRight="true"
+            android:src="@color/collect"
+            app:allow_random_color="false"
+            app:big_shine_color="@color/collect"
+            app:btn_color="@color/gray_dark"
+            app:btn_fill_color="@color/collect"
+            app:click_animation_duration="200"
+            app:enable_flashing="false"
+            app:shine_animation_duration="1500"
+            app:shine_count="8"
+            app:shine_distance_multiple="2"
+            app:shine_turn_angle="10"
+            app:siShape="@drawable/collect_icon"
+            app:small_shine_color="#ccc481"
+            app:small_shine_offset_angle="20"/>
+
         <TextView
+            android:visibility="gone"
             android:id="@+id/story_item_repost"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

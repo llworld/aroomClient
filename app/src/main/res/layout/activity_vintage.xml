@@ -49,6 +49,7 @@
         android:paddingRight="@dimen/dimen_44">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/vintage_surplus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
 
         <!--PopupWindow-->
         <com.flyco.roundview.RoundTextView
+            android:visibility="gone"
             android:id="@+id/vintage_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

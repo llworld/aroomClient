@@ -71,6 +71,7 @@ public class HeadListAdapter extends BaseAdapter {
         // 设置控件的数据
         Glide.with(convertView)
                 .load(list.get(i))
+                .thumbnail(0.2f)
                 .into(viewHolder.imageView);
 //        viewHolder.title.setText(bean.itemTitle);
 //        viewHolder.content.setText(bean.itemContent);

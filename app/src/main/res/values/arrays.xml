@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
 
     <string-array name="login_type">
@@ -20,7 +18,11 @@
         <item>佳肴</item>
     </string-array>
 
-
+    <string-array name="follow_type">
+        <item>小二儿</item>
+        <item>伙伴</item>
+        <item>掌柜的</item>
+    </string-array>
 
 
 </resources>

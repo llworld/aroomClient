@@ -1,16 +1,30 @@
 package com.aroominn.aroom.im;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Vibrator;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.aroominn.aroom.R;
 import com.aroominn.aroom.utils.L;
+import com.aroominn.aroom.utils.PublicUtils;
 import com.aroominn.aroom.utils.SharedUtils;
+import com.aroominn.aroom.utils.SoundUtils;
 import com.aroominn.aroom.utils.rongcloud.RongCloudUtils;
 import com.aroominn.aroom.view.inn.HomepageActivity;
+import com.aroominn.aroom.view.message.ChatActivity;
 
 import java.util.ArrayList;
 
@@ -28,6 +42,13 @@ import io.rong.imlib.model.MessageContent;
 import io.rong.imlib.model.UserInfo;
 import io.rong.message.ContactNotificationMessage;
 import io.rong.message.GroupNotificationMessage;
+import io.rong.message.ImageMessage;
+import io.rong.message.TextMessage;
+import io.rong.message.VoiceMessage;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
+import static android.content.Context.VIBRATOR_SERVICE;
+import static com.aroominn.aroom.base.BaseApplication.getContext;
 
 public class IMListener implements RongIM.ConversationBehaviorListener, RongIM.ConversationListBehaviorListener, RongIMClient.ConnectionStatusListener, RongIM.UserInfoProvider, RongIM.GroupInfoProvider, RongIMClient.OnReceiveMessageListener, RongIM.IGroupMembersProvider, RongIM.ConversationClickListener {
     public static final String TAG = "IMListener";
@@ -309,9 +330,21 @@ public class IMListener implements RongIM.ConversationBehaviorListener, RongIM.C
         return null;
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public boolean onReceived(Message message, int i) {
         L.e("收到的消息" + message);
+
+        if (SharedUtils.getInstance().getTone()) {
+//            SoundUtils.playSound(R.raw.tips);
+        }
+
+        Vibrator vibrator = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
+        if (SharedUtils.getInstance().getVibration()) {
+//            vibrator.vibrate(200);
+        }
+
         /**
          * Message{
          * conversationType=PRIVATE,
@@ -330,9 +363,88 @@ public class IMListener implements RongIM.ConversationBehaviorListener, RongIM.C
          * UId='BGCT-PU97-HGE4-FUKF'
          * }
          */
+
+        // 如果应用在后台 就弹出悬浮窗
+        if (PublicUtils.isApplicationInBackground(getContext())) {
+
+            NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+//            notificationManager.getNotificationChannel("my_channel_tet").enableVibration(false);
+            Notification.Builder builder = new Notification.Builder(getContext());
+
+            if (SharedUtils.getInstance().getVibration() && SharedUtils.getInstance().getTone()) {
+                builder.setChannelId("my_channel_aroom");
+            }
+            if (!SharedUtils.getInstance().getVibration() && SharedUtils.getInstance().getTone()) {
+                builder.setChannelId("my_channel_noVibration");
+            }
+            if (SharedUtils.getInstance().getVibration() && !SharedUtils.getInstance().getTone()) {
+                builder.setChannelId("my_channel_noTone");
+            }
+            if (!SharedUtils.getInstance().getVibration() && !SharedUtils.getInstance().getTone()) {
+                builder.setChannelId("my_channel_none");
+            }
+
+
+            builder.setContentInfo("补充内容");
+            // 判断消息类型  根据自己需求进行判断
+            if (message.getContent() instanceof TextMessage) {
+                String textMessageContent = ((TextMessage) message.getContent()).getContent();
+                builder.setContentText(textMessageContent);
+            } else if (message.getContent() instanceof ImageMessage) {
+                builder.setContentText("图片消息");
+            } else if (message.getContent() instanceof VoiceMessage) {
+                builder.setContentText("语音消息");
+            } else {
+                builder.setContentText("其他消息");
+            }
+            //设置弹窗以及通知栏显示内容
+            /**暂时无法获取用户昵称  考虑后期全部缓存
+             *
+             */
+            builder.setContentTitle(message.getContent().toString());
+//            builder.setContentTitle(message.getContent().toString());
+            builder.setSmallIcon(R.mipmap.logo);
+            builder.setTicker("新消息");
+            // 是否自动消失
+            builder.setAutoCancel(true);
+            // 是否显示时间
+            builder.setShowWhen(true);
+            // 设置接收时间
+            builder.setWhen(message.getReceivedTime());
+
+            // 设置会话界面
+            Intent intent = new Intent(getContext(), ChatActivity.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            Uri uri;
+
+            uri = Uri.parse("rong://" + getContext().getPackageName()).buildUpon()
+                    .appendPath("conversation").appendPath(message.getConversationType().getName().toLowerCase())
+                    .appendQueryParameter("title", "用户名字")
+//                    .appendQueryParameter("title", message.getContent().getUserInfo().getName())
+                    .appendQueryParameter("targetId", message.getTargetId())
+//                    .appendQueryParameter("targetId", message.getContent().getUserInfo().getUserId())
+                    .build();
+            intent.setData(uri);
+            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            builder.setContentIntent(pendingIntent);
+            Notification notification = builder.build();
+            notificationManager.notify(1, notification);
+
+            // 设置自己本地的通知铃声有几种实现方式 （声音文件自己本地创建好，在res文件夹下面创建好raw文件夹，把声音文件放进去）
+            // 1 利用系统媒体播放器播放本地文件
+//        MediaPlayer player = MediaPlayer.create(getContext(), R.raw.sound);
+//        player.start();
+            // 2 工具类实现方式
+
+            return true;
+        }
+
+
+
+
         /*return false  可接收消息的推送
          * return true 应该和push推送冲突*/
-        return false;
+        return true;
     }
 
 

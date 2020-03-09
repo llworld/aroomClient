@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/dimen_10"
+    android:id="@+id/layout_list_item_story_info"
     android:background="@color/white">
 
 
@@ -10,17 +11,17 @@
         android:id="@+id/story_info_item_head"
         android:layout_width="@dimen/dimen_80"
         android:layout_height="@dimen/dimen_80"
-        android:layout_margin="@dimen/dimen_8"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_margin="@dimen/dimen_8" />
 
     <TextView
+
         android:id="@+id/story_info_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_6"
         android:layout_toRightOf="@+id/story_info_item_head"
         android:text="柴米油盐"
-        android:textColor="@color/black" />
+        android:textColor="@color/green" />
 
     <TextView
         android:id="@+id/story_info_time"
@@ -42,6 +43,7 @@
         android:text="33楼" />
 
     <ImageView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

@@ -12,9 +12,10 @@
         android:background="@color/white"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="3">
         <!--首页-->
         <FrameLayout
+            android:visibility="gone"
             android:id="@+id/frame_fm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -70,6 +71,7 @@
                 android:textSize="@dimen/font_10"/>
         </FrameLayout>
         <FrameLayout
+            android:visibility="gone"
             android:id="@+id/frame_vintage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -77,20 +79,22 @@
             android:clickable="true">
 
             <ImageView
+                android:layout_marginBottom="@dimen/dimen_20"
                 android:id="@+id/main_vintage_tab"
                 android:layout_width="@dimen/dimen_64"
                 android:layout_height="@dimen/dimen_64"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
-                android:src="@drawable/vintage_icon"/>
+                android:src="@drawable/vintage_tab_selector"/>
 
             <TextView
+
                 android:id="@+id/main_vintage_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:layout_marginBottom="@dimen/dimen_6"
-                android:layout_marginTop="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_8"
                 android:text="发布"
                 android:textColor="@color/home_tab_text_color"
                 android:textSize="@dimen/font_10"/>

@@ -1,15 +1,43 @@
 package com.aroominn.aroom.view.message.follow;
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.aroominn.aroom.R;
+import com.aroominn.aroom.adapter.FollowListAdapter;
 import com.aroominn.aroom.base.BaseFragment;
+import com.aroominn.aroom.base.BasicResponse;
+import com.aroominn.aroom.bean.Friend;
+import com.aroominn.aroom.bean.FriendData;
+import com.aroominn.aroom.bean.User;
+import com.aroominn.aroom.presenter.FriendsPresenter;
+import com.aroominn.aroom.presenter.impl.FriendsPresenterImpl;
+import com.aroominn.aroom.utils.SharedUtils;
+import com.aroominn.aroom.view.views.FriendsView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
 
 /**
  * 同事   相互关注的
  */
-public class MateFragment extends BaseFragment{
+public class MateFragment extends BaseFragment implements FriendsView{
+
+    @BindView(R.id.mate_friends_list)
+    RecyclerView mRecyclerView;
+    private FollowListAdapter mAdapter;
+    private ArrayList<FriendData> f;
+
+    public static MateFragment newInstance() {
+        return new MateFragment();
+    }
     @Override
     public int getContentViewId() {
         return R.layout.fargment_mate;
@@ -23,10 +51,41 @@ public class MateFragment extends BaseFragment{
     @Override
     public void initData(Bundle savedInstanceState) {
 
+
+        FriendsPresenter mFriendsPresenter=new FriendsPresenterImpl(this);
+        JSONObject param=new JSONObject();
+        try {
+            param.put("userId", SharedUtils.getInstance().getUserID());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mFriendsPresenter.getMateFriends(this,param);
     }
 
     @Override
     public void initTitle(View view, Bundle savedInstanceState) {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new FollowListAdapter(context,R.layout.list_item_follow, new ArrayList<FriendData>());
+        mRecyclerView.setAdapter(mAdapter);
+//        mAdapter.setEmptyView(R.layout.layout_friends_empty);
+    }
+
+    @Override
+    public void showError(BasicResponse error, String url) {
+
+    }
+
+    @Override
+    public void setFriends(Friend friends) {
+if (friends.getStatus_code()==0){
+    f = friends.getData();
+    mAdapter.setNewData(f);
+}
+    }
+
+    @Override
+    public void setFriendInfo(User user) {
 
     }
 }

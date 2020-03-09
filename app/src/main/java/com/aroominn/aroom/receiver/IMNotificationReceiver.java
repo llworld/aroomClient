@@ -14,7 +14,7 @@ public class IMNotificationReceiver extends PushMessageReceiver {
     public boolean onNotificationMessageArrived(Context context, PushType pushType, PushNotificationMessage message) {
         L.e("融云Receiver");
         L.e(message.getSenderId());
-        return false; // 返回 false, 会弹出融云 SDK 默认通知; 返回 true, 融云 SDK 不会弹通知, 通知需要由您自定义。
+        return true; // 返回 false, 会弹出融云 SDK 默认通知; 返回 true, 融云 SDK 不会弹通知, 通知需要由您自定义。
     }
 
     @Override

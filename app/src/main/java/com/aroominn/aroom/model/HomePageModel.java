@@ -15,4 +15,7 @@ public interface HomePageModel {
     void HisStories(BaseImpl context, JSONObject param);
 
 
+    void loadFollow(BaseImpl context, JSONObject param);
+
+    void collectStories(BaseImpl context, JSONObject param);
 }

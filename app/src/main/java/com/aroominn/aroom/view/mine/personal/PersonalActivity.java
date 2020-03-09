@@ -12,6 +12,9 @@ import com.aroominn.aroom.presenter.PersonalPresenter;
 import com.aroominn.aroom.presenter.impl.PersonalPresenterImpl;
 import com.aroominn.aroom.utils.SharedUtils;
 import com.aroominn.aroom.utils.customview.TitleBar;
+import com.aroominn.aroom.utils.popupWindow.OnPopupItemClickListener;
+import com.aroominn.aroom.utils.popupWindow.SexBottomPopup;
+import com.aroominn.aroom.view.login.LoginActivity;
 import com.aroominn.aroom.view.views.PersonalView;
 import com.bumptech.glide.Glide;
 
@@ -28,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * 个人中心
  */
-public class PersonalActivity extends BaseActivity implements PersonalView {
+public class PersonalActivity extends BaseActivity implements PersonalView, OnPopupItemClickListener {
 
     @BindView(R.id.personal_title)
     TitleBar mTitleBar;
@@ -87,7 +90,8 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
     }
 
     @OnClick({R.id.personal_head_layout, R.id.personal_nick_layout, R.id.personal_sex_layout,
-            R.id.personal_phone_layout, R.id.personal_tag_layout, R.id.personal_password_layout, R.id.personal_email_layout})
+            R.id.personal_phone_layout, R.id.personal_tag_layout, R.id.personal_password_layout, R.id.personal_email_layout,
+            R.id.login_out})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
@@ -101,6 +105,8 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
                 break;
             case R.id.personal_sex_layout:
                 /*弹出选择器*/
+                SexBottomPopup sexBottomPopup = new SexBottomPopup(this);
+                sexBottomPopup.setOnMenuItemListener(this);
                 break;
             case R.id.personal_phone_layout:
 
@@ -113,6 +119,14 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
                 startActivity(new Intent(this, PasswordActivity.class));
                 break;
             case R.id.personal_email_layout:
+                break;
+            case R.id.login_out:
+                startActivity(new Intent(this, LoginActivity.class));
+                SharedUtils.getInstance().setUserID(null);
+                SharedUtils.getInstance().setToken("");
+                SharedUtils.getInstance().setLogin(false);
+                SharedUtils.getInstance().setUser(null);
+                finish();
                 break;
         }
     }
@@ -149,6 +163,14 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
                 }
                 break;
             case 102:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+
+                    if (bundle != null) {
+                        String nick = bundle.getString("nick");
+                        requestData(null, nick, -1, null);
+                    }
+                }
                 break;
         }
     }
@@ -170,6 +192,21 @@ public class PersonalActivity extends BaseActivity implements PersonalView {
 
     @Override
     public void setPhoneSms(String sms) {
+
+    }
+
+    /*popup 点击事件*/
+    @Override
+    public void OnItemClickListener(View view) {
+        int sex = -1;
+        if (view.getTag().equals("男"))
+            sex = 0;
+        if (view.getTag().equals("女"))
+            sex = 1;
+        if (view.getTag().equals("保密"))
+            sex = 3;
+
+        requestData(null, null, sex, null);
 
     }
 }

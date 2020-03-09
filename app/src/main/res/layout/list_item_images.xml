@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <uk.co.senab.photoview.PhotoView
+    <ImageView
         android:id="@+id/list_item_image"
-        android:layout_width="@dimen/dimen_288"
-        android:layout_height="@dimen/dimen_288"
+        android:layout_width="@dimen/dimen_200"
+        android:layout_height="@dimen/dimen_200"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/dimen_8"
-        android:src="@mipmap/floor_head" />
+        android:adjustViewBounds="true"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop" />
+
+
 
 </RelativeLayout>

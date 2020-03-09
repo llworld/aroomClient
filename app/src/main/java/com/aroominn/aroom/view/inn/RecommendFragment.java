@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aroominn.aroom.R;
+import com.aroominn.aroom.adapter.HistoryListAdapter;
 import com.aroominn.aroom.adapter.StoryListAdapter;
 import com.aroominn.aroom.base.BaseFragment;
 import com.aroominn.aroom.base.BasicResponse;
@@ -18,14 +19,20 @@ import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.presenter.StoryPresenter;
+import com.aroominn.aroom.presenter.TalePresenter;
 import com.aroominn.aroom.presenter.impl.StoryPresenterImpl;
+import com.aroominn.aroom.presenter.impl.TalePresenterImpl;
 import com.aroominn.aroom.utils.SharedUtils;
 import com.aroominn.aroom.utils.ToastUtils;
+import com.aroominn.aroom.utils.popupWindow.CommentPopup;
+import com.aroominn.aroom.utils.popupWindow.ImagePopup;
 import com.aroominn.aroom.utils.recyclelist.DividerItemDecoration;
 import com.aroominn.aroom.view.views.StoryView;
+import com.aroominn.aroom.view.views.TaleView;
 import com.aroominn.aroom.view.views.UtilsView;
 import com.aroominn.aroom.view.vintage.VintageActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.sackcentury.shinebuttonlib.ShineButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -49,12 +56,13 @@ import io.reactivex.annotations.NonNull;
  */
 
 public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.OnItemChildClickListener,
-        BaseQuickAdapter.OnItemLongClickListener, BaseQuickAdapter.OnItemClickListener, StoryView, UtilsView {
+        BaseQuickAdapter.OnItemLongClickListener, BaseQuickAdapter.OnItemClickListener, StoryView, TaleView {
 
 
     public static final String TAG = RecommendFragment.class.getName();
     private StoryPresenter storyPresenter;
     private int maxPageNum;
+    private TalePresenter talePresenter;
 
     public static RecommendFragment newInstance() {
         return new RecommendFragment();
@@ -75,6 +83,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
     @BindView(R.id.recommend_list)
     RecyclerView storyRv;
 
+
     private StoryListAdapter adapter;
     private ArrayList<Stories> stories = new ArrayList<>();
     private ArrayList<Stories> tempStories = new ArrayList<>();
@@ -91,6 +100,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
 
     @Override
     public void setListener(View view, Bundle savedInstanceState) {
+
 
         mRefreshLayout.setEnableLoadMore(true);
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -207,30 +217,17 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
 
 
         adapter = new StoryListAdapter(context, R.layout.list_item_story, stories);
-
-        /**
-         * 添加头部
-         */
-//        View headerView=getLayoutInflater().inflate(R.layout.support_simple_spinner_dropdown_item, null);
-        TextView textView = new TextView(context);
-
-        textView.setText("发布我的动态");
-//        textView.setTextColor(getContext().getColor(R.color.black));
-        textView.setGravity(Gravity.CENTER);
-        textView.setPadding(20, 20, 20, 20);
-//        headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setOnClickListener(new View.OnClickListener() {
+        final ImagePopup imagePopup = new ImagePopup(context);
+        adapter.setImage(new HistoryListAdapter.ImageItemClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(context, VintageActivity.class));
+            public void onImageClick(String p) {
+                imagePopup.initView(p);
             }
         });
-        adapter.addHeaderView(textView);
-
 
 //        startActivity(new Intent(MainActivity.this, VintageActivity.class));
 
-        storyRv.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL, R.drawable.list_diver));
+        storyRv.addItemDecoration(new android.support.v7.widget.DividerItemDecoration(context, LinearLayoutManager.VERTICAL));
         storyRv.setLayoutManager(new LinearLayoutManager(context));
         storyRv.setAdapter(adapter);
 
@@ -258,6 +255,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
     @Override
     public void initTitle(View view, Bundle savedInstanceState) {
 
+        talePresenter = new TalePresenterImpl(this);
     }
 
     /**
@@ -279,14 +277,14 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
             case R.id.story_item_head:
                 ToastUtils.showBottomToast("查看主页" + position, 0);
                 Intent intent = new Intent(context, HomepageActivity.class);
-                String targetId=stories.get(position).getUserId()+"";
-                intent.putExtra("targetId",targetId);
-                intent.putExtra("title",stories.get(position).getNick());
+                String targetId = stories.get(position).getUserId() + "";
+                intent.putExtra("targetId", targetId);
+                intent.putExtra("title", stories.get(position).getNick());
                 startActivity(intent);
                 break;
             case R.id.story_item_like:
                 ToastUtils.showBottomToast("点赞" + position, 0);
-                postLikeRequest(stories.get(position));
+                postLikeRequest(stories.get(position), view);
                 break;
             case R.id.story_item_comment:
                 Intent commentIntent = new Intent(context, StoryActivity.class);
@@ -302,21 +300,42 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
             case R.id.story_item_repost:
                 ToastUtils.showBottomToast("转发" + position, 0);
                 break;
+            case R.id.story_item_collect:
+                collectRequest(stories.get(position), view);
+                break;
         }
     }
 
-    private void postLikeRequest(Stories s) {
+    private void collectRequest(Stories s, View view) {
+
+        ShineButton collect = (ShineButton) view;
         JSONObject param = new JSONObject();
         try {
             param.put("storyId", s.getId());
             param.put("ownerId", s.getUserId());
             param.put("userId", SharedUtils.getInstance().getUserID());
+            param.put("enable", collect.isChecked() ? 1 : 0);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        talePresenter.collocationStory(this, param);
+    }
+
+    private void postLikeRequest(Stories s, View view) {
+        ShineButton like = (ShineButton) view;
+        JSONObject param = new JSONObject();
+        try {
+            param.put("storyId", s.getId());
+            param.put("ownerId", s.getUserId());
+            param.put("userId", SharedUtils.getInstance().getUserID());
+            param.put("status", like.isChecked() ? 1 : 0);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        storyPresenter.putLike(this, param);
+        talePresenter.likeStory(this, param);
     }
 
     @Override
@@ -344,9 +363,10 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
     }
 
     @Override
-    public void setStory(Result story) {
+    public void setTale(Result result) {
 
     }
+
 
     @Override
     public void setStory(Story story) {

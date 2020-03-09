@@ -3,6 +3,7 @@ package com.aroominn.aroom.view.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -87,7 +88,7 @@ public class PhoneFragment extends BaseFragment implements LoginView {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                phone = editable.toString().trim();
+//                phone = editable.toString().trim();
 
             }
         });
@@ -107,7 +108,7 @@ public class PhoneFragment extends BaseFragment implements LoginView {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                vCode = editable.toString().trim();
+//                vCode = editable.toString().trim();
             }
         });
 
@@ -132,6 +133,7 @@ public class PhoneFragment extends BaseFragment implements LoginView {
             case R.id.phone_getVcode:
 
                 //对手机号进行判断
+                phone = phoneET.getText().toString();
 
                 if (phone.equals("")) {
                     ToastUtils.showBottomToast(context, "请输入手机号");
@@ -160,19 +162,19 @@ public class PhoneFragment extends BaseFragment implements LoginView {
             case R.id.phone_login:
 
                 //判断验证码输入情况
-
-           /*     if (vCode == null) {
+                vCode = vCodeET.getText().toString();
+                if (TextUtils.isEmpty(vCode)) {
                     ToastUtils.showBottomToast(context, "请输入验证码");
                     break;
                 }
                 if (vCode.length() != 6) {
                     ToastUtils.showBottomToast(context, "请输入完整的验证码");
                     break;
-                }*/
+                }
                 param = new JSONObject();
                 try {
-                    param.put("phone", "17861983600");
-                    param.put("code", "553384");
+                    param.put("phone", phone);
+                    param.put("code", vCode);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aroominn.aroom.R;
+import com.aroominn.aroom.adapter.HistoryListAdapter;
 import com.aroominn.aroom.adapter.StoryListAdapter;
 import com.aroominn.aroom.base.BaseFragment;
 import com.aroominn.aroom.base.BasicResponse;
@@ -20,6 +21,7 @@ import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.presenter.StoryPresenter;
 import com.aroominn.aroom.presenter.impl.StoryPresenterImpl;
 import com.aroominn.aroom.utils.ToastUtils;
+import com.aroominn.aroom.utils.popupWindow.ImagePopup;
 import com.aroominn.aroom.view.views.StoryView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -111,7 +113,13 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
 
 
         adapter = new StoryListAdapter(context, R.layout.list_item_story, stories);
-
+        final ImagePopup imagePopup = new ImagePopup(context);
+        adapter.setImage(new HistoryListAdapter.ImageItemClickListener() {
+            @Override
+            public void onImageClick(String p) {
+                imagePopup.initView(p);
+            }
+        });
         /**
          * 添加头部
          */

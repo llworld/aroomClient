@@ -13,6 +13,7 @@ import com.aroominn.aroom.base.BaseFragment;
 import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.utils.customview.PagerSlidingTabStrip;
 import com.aroominn.aroom.view.message.MessageFragment;
+import com.aroominn.aroom.view.vintage.VintageActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,6 +31,9 @@ public class InnFragment extends BaseFragment {
 
     @BindView(R.id.inn_vp)
     ViewPager viewPager;
+
+    @BindView(R.id.inn_vintage)
+    ImageView vintage;
 
     public static final String TAG = InnFragment.class.getSimpleName();
 
@@ -72,6 +76,7 @@ public class InnFragment extends BaseFragment {
 
         StatusBarUtil.immersive(context);
         StatusBarUtil.setPaddingSmart(context, tabStrip);
+        StatusBarUtil.setMargin(context, vintage);
 
 
         titleList = getResources().getStringArray(R.array.inn_type);
@@ -91,9 +96,16 @@ public class InnFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.inn_notice)
+    @OnClick({R.id.inn_notice, R.id.inn_vintage})
     public void onViewClicked(View view) {
-        startActivity(new Intent(context, NoticeActivity.class));
+        switch (view.getId()) {
+            case R.id.inn_notice:
+                startActivity(new Intent(context, NoticeActivity.class));
+                break;
+            case R.id.inn_vintage:
+                startActivity(new Intent(context, VintageActivity.class));
+                break;
+        }
     }
 
 }

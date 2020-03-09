@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/mine_parallax"
         android:layout_width="match_parent"
-        android:layout_height="670dp"
+        android:layout_height="620dp"
         android:layout_marginTop="-300dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
@@ -120,6 +120,7 @@
                                     android:text="一醉方休" />
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:id="@+id/mine_relationship"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -144,6 +145,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/mine_signature"
                                     style="@style/AppTheme.Label.Description"
                                     android:layout_below="@id/mine_relationship"
@@ -165,6 +167,7 @@
                                 app:civ_border_width="3dp" />
 
                             <TextView
+                                android:visibility="gone"
                                 android:id="@+id/mine_visitor"
                                 style="@style/AppTheme.Label.Layout"
                                 android:layout_alignParentEnd="true"
@@ -186,6 +189,7 @@
                     </android.support.design.widget.CollapsingToolbarLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#f2f2f2"
@@ -236,6 +240,12 @@
             </LinearLayout>
 
         </com.aroominn.aroom.utils.customview.JudgeNestedScrollView>
+
+        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_srlBackgroundColor="@color/main_theme" />
+
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
@@ -328,19 +338,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="一醉方休"
+                android:text="一间"
                 android:textSize="16sp" />
 
 
         </android.support.v7.widget.ButtonBarLayout>
 
         <ImageView
-            android:paddingRight="@dimen/dimen_24"
-            android:paddingLeft="@dimen/dimen_24"
             android:id="@+id/mine_setting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
+            android:paddingLeft="@dimen/dimen_24"
+            android:paddingRight="@dimen/dimen_24"
             android:src="@drawable/setting_icon" />
 
     </android.support.v7.widget.Toolbar>

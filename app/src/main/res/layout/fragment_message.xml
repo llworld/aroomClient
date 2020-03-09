@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
+    <!--android:fitsSystemWindows="true"-->
 
+    <com.hjq.bar.TitleBar
+        android:id="@+id/message_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rightTitle="@string/follow">
+
+
+    </com.hjq.bar.TitleBar>
 
     <RelativeLayout
-        android:id="@+id/message_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_88">
+        android:layout_height="@dimen/dimen_88"
+        android:visibility="gone">
 
         <TextView
-            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
             android:text="聊天"
-            android:textSize="@dimen/font_18"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18" />
+
         <TextView
             android:id="@+id/message_follow"
-            android:textColor="@color/black_half"
-            android:layout_marginRight="@dimen/dimen_44"
-            android:text="关注"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen_44"
+            android:gravity="center_vertical"
+            android:text="关注"
+            android:textColor="@color/black_half" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/message_title">
+
+        <FrameLayout
+            android:id="@+id/subconversationlist"
+            android:name="io.rong.imkit.fragment.SubConversationListFragment"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:layout_below="@+id/message_title"
-        android:id="@+id/subconversationlist"
-        android:name="io.rong.imkit.fragment.SubConversationListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.v7.widget.RecyclerView
-        android:visibility="gone"
-        android:layout_below="@+id/message_title"
-        android:id="@+id/message_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

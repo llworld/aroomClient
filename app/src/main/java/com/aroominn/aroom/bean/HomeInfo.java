@@ -2,9 +2,9 @@ package com.aroominn.aroom.bean;
 
 import com.aroominn.aroom.base.BasicResponse;
 
-public class HomeInfo  extends BasicResponse{
+public class HomeInfo extends BasicResponse {
 
-    InfoData  data;
+    InfoData data;
 
     public InfoData getData() {
         return data;
@@ -14,10 +14,19 @@ public class HomeInfo  extends BasicResponse{
         this.data = data;
     }
 
-   public class InfoData{
+    public class InfoData {
         String name;
         String headUrl;
         String follow;
+        String isFollow;    //是否关注当前用户 自己id则是  空则否
+
+        public String getIsFollow() {
+            return isFollow;
+        }
+
+        public void setIsFollow(String isFollow) {
+            this.isFollow = isFollow;
+        }
 
         public String getName() {
             return name;

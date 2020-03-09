@@ -13,6 +13,7 @@ import com.aroominn.aroom.R;
 import com.aroominn.aroom.base.BaseFragment;
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.User;
+import com.aroominn.aroom.im.IMListener;
 import com.aroominn.aroom.presenter.LoginPresenter;
 import com.aroominn.aroom.presenter.impl.LoginPresenterImpl;
 import com.aroominn.aroom.utils.Const;
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
 
 public class AccountFragment extends BaseFragment implements LoginView {
 
@@ -108,8 +110,8 @@ public class AccountFragment extends BaseFragment implements LoginView {
 
             JSONObject param = new JSONObject();
             try {
-                param.put("userPhone", phoneET.getText().toString());
-                param.put("userPassword", pwdET.getText().toString());
+                param.put("phone", phoneET.getText().toString());
+                param.put("password", pwdET.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -180,6 +182,8 @@ public class AccountFragment extends BaseFragment implements LoginView {
             SharedUtils.getInstance().setUser(user.getData());
             SharedUtils.getInstance().setUserID(user.getData().getId());
             SharedUtils.getInstance().setToken(user.getData().getToken());
+            RongIM.connect(user.getData().getToken(), IMListener.getInstance().getConnectCallback());
+
             startActivity(new Intent(context, MainActivity.class));
             context.finish();
         }

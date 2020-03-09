@@ -20,16 +20,20 @@ import com.aroominn.aroom.adapter.HistoryListAdapter;
 import com.aroominn.aroom.base.BaseActivity;
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.HomeInfo;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.bean.User;
 import com.aroominn.aroom.presenter.HomePagePresenter;
 import com.aroominn.aroom.presenter.impl.HomePagePresenterImpl;
 import com.aroominn.aroom.utils.L;
+import com.aroominn.aroom.utils.SharedUtils;
 import com.aroominn.aroom.utils.StatusBarUtil;
+import com.aroominn.aroom.utils.popupWindow.ImagePopup;
 import com.aroominn.aroom.view.views.HomePageView;
 import com.aroominn.aroom.view.views.LoginView;
 import com.bumptech.glide.Glide;
+import com.flyco.roundview.RoundTextView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -77,6 +81,9 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
     @BindView(R.id.homepage_nickname)
     TextView nickName;
 
+    @BindView(R.id.homepage_attention)
+    RoundTextView follow;
+
     private int mOffset = 0;
     private int mScrollY = 0;
 
@@ -85,6 +92,9 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
     private String title;
     private HomePagePresenter presenter;
     private int pageNum = 1;
+    private boolean isRefresh = true;
+    private ArrayList<Stories> s;
+    private boolean isLastPage = true;
 
     @Override
     public void initView(Bundle savedInstanceState) {
@@ -109,13 +119,19 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 pageNum = 1;
+                isRefresh = true;
                 requestHisStory();
                 refreshLayout.finishRefresh(2000);
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                if (isLastPage) {
+                    refreshLayout.finishLoadMoreWithNoMoreData();
+                    return;
+                }
                 pageNum += 1;
+                isRefresh = false;
                 requestHisStory();
                 refreshLayout.finishLoadMore(2000);
             }
@@ -162,6 +178,18 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
         mBarLayout.setAlpha(0);
         toolbar.setBackgroundColor(0);
 
+        final ImagePopup imagePopup = new ImagePopup(this);
+        adapter = new HistoryListAdapter(this, R.layout.list_history_item, new ArrayList<Stories>());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        adapter.setImage(new HistoryListAdapter.ImageItemClickListener() {
+            @Override
+            public void onImageClick(String p) {
+                L.e("点击了图片");
+                imagePopup.initView(p);
+            }
+        });
+
     }
 
     @Override
@@ -174,14 +202,14 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
         presenter = new HomePagePresenterImpl(this);
         JSONObject param = new JSONObject();
         try {
-            param.put("id", targetId);
+            param.put("toId", targetId);
+            param.put("fromId", SharedUtils.getInstance().getUserID());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         presenter.getHomeUser(this, param);
         requestHisStory();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
@@ -190,7 +218,8 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
         /*加载用户历史故事*/
         JSONObject object = new JSONObject();
         try {
-            object.put("userId", targetId);
+            object.put("targetId", targetId);
+            object.put("userId", SharedUtils.getInstance().getUserID());
             object.put("pageNum", pageNum);
             object.put("pageSize", 10);
         } catch (JSONException e) {
@@ -204,12 +233,42 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
         return R.layout.activity_homepage;
     }
 
-    @OnClick({R.id.homepage_leaveword})
+    @OnClick({R.id.homepage_leaveword, R.id.homepage_attention})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.homepage_leaveword:
                 /*跳转到聊天界面*/
+                //如果是从聊天界面跳转过来  则直接finish();
                 RongIM.getInstance().startConversation(context, Conversation.ConversationType.PRIVATE, targetId, title);
+                break;
+            case R.id.homepage_attention:
+                JSONObject param = new JSONObject();
+                if (follow.getText().equals(R.string.unfollow)) {
+                    /*关注操作*/
+
+                    try {
+                        param.put("userId", SharedUtils.getInstance().getUserID());
+                        param.put("followId", targetId);
+                        param.put("status", 1);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    presenter.follow(this, param);
+                }
+                if (follow.getText().equals(R.string.follow)) {
+                    /*取消关注操作*/
+                    try {
+                        param.put("userId", SharedUtils.getInstance().getUserID());
+                        param.put("followId", targetId);
+                        param.put("status", 0);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    presenter.follow(this, param);
+                }
+
                 break;
         }
 
@@ -223,13 +282,17 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
     @Override
     public void setHomeStory(Story stories) {
         if (stories.getStatus_code() == 0) {
-            if (adapter == null || pageNum == 1) {
-                adapter = new HistoryListAdapter(this,R.layout.list_history_item, stories.getData().getList());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setNestedScrollingEnabled(false);
+
+            isLastPage = stories.getData().isLastPage();
+            if (isRefresh) {
+                s = stories.getData().getList();
+                adapter.setNewData(s);
             } else {
-                adapter.addData(stories.getData().getList());
+                s.addAll(stories.getData().getList());
+                adapter.addData(s);
             }
+            adapter.notifyDataSetChanged();
+
         }
 
     }
@@ -243,9 +306,20 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
                     .into(avatarView);
             nickName.setText(user.getData().getName());
 
+            if (user.getData().getIsFollow() != null) {
+                follow.setText(R.string.unfollow);
+            }
+
         }
 
 
+    }
+
+    @Override
+    public void setFollow(Result result) {
+        if (result.getStatus_code() == 0) {
+            //关注成功
+        }
     }
 
 

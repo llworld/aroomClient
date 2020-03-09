@@ -3,6 +3,7 @@ package com.aroominn.aroom.view.mine.personal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -12,6 +13,8 @@ import com.aroominn.aroom.base.BaseActivity;
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.User;
 import com.aroominn.aroom.utils.L;
+import com.aroominn.aroom.utils.StatusBarUtil;
+import com.aroominn.aroom.utils.UrlTools;
 import com.aroominn.aroom.view.views.PersonalView;
 
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class HeadActivity extends BaseActivity implements AdapterView.OnItemClic
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        StatusBarUtil.setPaddingSmart(context, ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0));
 
     }
 
@@ -45,12 +49,12 @@ public class HeadActivity extends BaseActivity implements AdapterView.OnItemClic
 
 
         list = new ArrayList<>();
-        String s1 = "http://192.168.1.6/resource/images/DefaultHead/xiaoliu.jpg";
-        String s2 = "http://192.168.1.6/resource/images/DefaultHead/xiaoguo.jpg";
-        String s3 = "http://192.168.1.6/resource/images/DefaultHead/zhanggui.jpg";
-        String s4 = "http://192.168.1.6/resource/images/DefaultHead/xiucai.jpg";
-        String s5 = "http://192.168.1.6/resource/images/DefaultHead/dazui.jpg";
-        String s6 = "http://192.168.1.6/resource/images/DefaultHead/laobai.jpg";
+        String s1 = UrlTools.SERVERIP+"resource/images/DefaultHead/xiaoliu.jpg";
+        String s2 = UrlTools.SERVERIP+"resource/images/DefaultHead/xiaoguo.jpg";
+        String s3 = UrlTools.SERVERIP+"resource/images/DefaultHead/zhanggui.jpg";
+        String s4 = UrlTools.SERVERIP+"resource/images/DefaultHead/xiucai.jpg";
+        String s5 = UrlTools.SERVERIP+"resource/images/DefaultHead/dazui.jpg";
+        String s6 = UrlTools.SERVERIP+"resource/images/DefaultHead/laobai.jpg";
         list.add(s1);
 
         list.add(s2);

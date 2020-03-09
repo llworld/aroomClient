@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/report_type1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:tag="色情暴力"
+        android:text="色情暴力" />
+<View style="@style/line_view"
+    android:layout_marginLeft="@dimen/dimen_0"/>
+    <TextView
+        android:id="@+id/report_type2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:tag="人身攻击"
+        android:text="人身攻击" />
+    <View style="@style/line_view"
+        android:layout_marginLeft="@dimen/dimen_0"/>
+    <TextView
+        android:id="@+id/report_type3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:tag="广告骚扰"
+        android:text="广告骚扰" />
+    <View style="@style/line_view"
+        android:layout_marginLeft="@dimen/dimen_0"/>
+    <TextView
+        android:id="@+id/report_type4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:tag="非法内容"
+        android:text="非法内容" />
+
+</LinearLayout>

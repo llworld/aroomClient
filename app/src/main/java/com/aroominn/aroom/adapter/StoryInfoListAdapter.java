@@ -15,6 +15,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * 故事的评论信息
  */
@@ -24,7 +26,7 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
         super(layoutResId, data);
     }
 
-    static int i = 1;
+    int i = 1;
 
     @Override
     protected void convert(BaseViewHolder helper, Comment item) {
@@ -43,7 +45,7 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
 //        }
 //
 //        ImageView logoview = helper.getView(R.id.story_item_head);
-            ImageView test = helper.getView(R.id.story_info_item_head);
+            CircleImageView test = helper.getView(R.id.story_info_item_head);
 //        Glide.with(mContext)
 //                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547389787791&di=291e063713a0240a2a686fea173b6ae6&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201503%2F12%2F20150312185948_veyXW.thumb.700_0.jpeg")
 //                .placeholder(R.mipmap.ic_launcher)
@@ -62,6 +64,7 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
             if (item.getHead() != null) {
                 Glide.with(mContext)
                         .load(item.getHead())
+                        .thumbnail(0.5f)
                         .into(test);
             }
 

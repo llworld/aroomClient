@@ -14,8 +14,8 @@ public class MineFragmentAdapter extends FragmentPagerAdapter {
     private String[] titles;
     private String[] fragments;
 
-    private TastyFragment tastyFragment;
-    private NobleFragment nobleFragment;
+    public TastyFragment tastyFragment;
+    public NobleFragment nobleFragment;
 
     public MineFragmentAdapter(FragmentManager fm, String[] titles, String[] fragments) {
         super(fm);

@@ -18,10 +18,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aroominn.aroom.R;
@@ -30,6 +32,7 @@ import com.aroominn.aroom.adapter.MineFragmentAdapter;
 import com.aroominn.aroom.base.BaseFragment;
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.HomeInfo;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.bean.User;
@@ -70,7 +73,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * 我的
  */
-public class MineFragment extends BaseFragment implements OnRefreshListener, OnRefreshLoadMoreListener ,HomePageView{
+public class MineFragment extends BaseFragment implements OnRefreshListener, OnRefreshLoadMoreListener, HomePageView {
 
     @BindView(R.id.mine_toolbar)
     Toolbar toolbar;
@@ -87,6 +90,13 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
     @BindView(R.id.mine_refreshLayout)
     SmartRefreshLayout refreshLayout;
 
+
+    @BindView(R.id.mine_toolbar_avatar)
+    CircleImageView mCircleImageView;
+
+    @BindView(R.id.mine_title)
+    TextView titleName;
+
 //    @BindView(R.id.mine_list)
 //    RecyclerView recyclerView;
 
@@ -94,10 +104,10 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
     private int mScrollY = 0;
 
     int toolBarPositionY = 0;
-    private static ArrayList<Stories> stories=new ArrayList<>();
+    private static ArrayList<Stories> stories = new ArrayList<>();
 
-    private int pageNum=1;
-    private int pageSize=10;
+    private int pageNum = 1;
+    private int pageSize = 10;
     private HomePagePresenter pagePresenter;
     private String headUrl;
 
@@ -129,7 +139,6 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
     CircleImageView headerImageView;
 
 
-
     private String[] titles;
     private String[] fragments;
     private int currentIndex = 0;
@@ -155,15 +164,17 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
         refreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                L.e("控件中的刷新");
-                mAdapter.fragments[mViewPager.getCurrentItem()].onRefresh(refreshLayout);
+//                mAdapter.fragments[mViewPager.getCurrentItem()].onRefresh(refreshLayout);
+                adapter.nobleFragment.onRefresh(refreshLayout);
+                adapter.tastyFragment.onRefresh(refreshLayout);
 
-                refreshLayout.finishRefresh(3000);
+                refreshLayout.finishRefresh(2000);
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                mAdapter.fragments[mViewPager.getCurrentItem()].onLoadMore(refreshLayout);
+                adapter.nobleFragment.onLoadMore(refreshLayout);
+                adapter.tastyFragment.onLoadMore(refreshLayout);
                 refreshLayout.finishLoadMore(2000);
 
             }
@@ -252,21 +263,18 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        mScrollView.setFocusable(true);
-        mViewPager.setFocusable(false);
-        mViewPager.setAdapter(mAdapter = new SmartPagerAdapter(Item.values()));
-        mTabLayout.setupWithViewPager(mViewPager, true);
+
 
 //        setSupportActionBar(toolbar);
         //状态栏透明和间距处理
-        StatusBarUtil.immersive(context);
-        StatusBarUtil.setPaddingSmart(context, toolbar);
+//        StatusBarUtil.immersive(context);
+//        StatusBarUtil.setPaddingSmart(context, toolbar);
 
 
         /**
          * 加载布局
          */
-       /* titles = getResources().getStringArray(R.array.food_wine);
+        titles = getResources().getStringArray(R.array.food_wine);
         //加载fragments
         fragments = new String[]{TastyFragment.TAG, NobleFragment.TAG};
         adapter = new MineFragmentAdapter(this.getChildFragmentManager(), titles, fragments);
@@ -274,25 +282,40 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
         mViewPager.setOffscreenPageLimit(titles.length);
         mViewPager.setCurrentItem(currentIndex);
 
-        tabStrip.setViewPager(mViewPager);
-        tabStrip.setSelectedTextColor(currentIndex);*/
+//        tabStrip.setViewPager(mViewPager);
+//        tabStrip.setSelectedTextColor(currentIndex);
+
+
+        mScrollView.setFocusable(true);
+        mViewPager.setFocusable(false);
+
+        mViewPager.setAdapter(adapter);
+//        mViewPager.setAdapter(mAdapter = new SmartPagerAdapter(Item.values()));
+        mTabLayout.setupWithViewPager(mViewPager, true);
         /**
          * 加载用户信息
          */
         /*未设置头像时加载默认头像*/
-        User.UserData u=SharedUtils.getInstance().getUser();
-        if (u!=null)
-            headUrl = u.getHead();
-        if (headUrl!=null&&headUrl!=""){
+        User.UserData u = SharedUtils.getInstance().getUser();
+        if (u != null) {
 
-        Glide.with(context)
-                .load(headUrl)
-                .into(headerImageView);
-        }else {
-            Glide.with(context)
-                    .load(R.mipmap.image_avatar_5)
-                    .into(headerImageView);
+            headUrl = u.getHead();
+            if (headUrl != null && headUrl != "") {
+
+                Glide.with(context)
+                        .load(headUrl)
+                        .into(headerImageView);
+                Glide.with(context)
+                        .load(headUrl)
+                        .into(mCircleImageView);
+
+            }
+            if (!TextUtils.isEmpty(u.getNick())) {
+                titleName.setText(u.getNick());
+            }
+
         }
+
 //        innName.setText(SharedUtils.getInstance().getUser().getNick());
 
         SimpleTarget<Drawable> simpleTarget = new SimpleTarget<Drawable>() {
@@ -312,22 +335,24 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
 
     }
 
-    public void requestData(){
-        JSONObject param=new JSONObject();
+    public void requestData() {
+        JSONObject param = new JSONObject();
         try {
-            param.put("userId",SharedUtils.getInstance().getUserID());
-            param.put("pageNum",pageNum);
-            param.put("pageSize",pageSize);
+            param.put("userId", SharedUtils.getInstance().getUserID());
+            param.put("targetId", SharedUtils.getInstance().getUserID());
+            param.put("pageNum", pageNum);
+            param.put("pageSize", pageSize);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        pagePresenter.getHomeStory(this,param);
+        pagePresenter.getHomeStory(this, param);
     }
 
     @Override
     public void initTitle(View view, Bundle savedInstanceState) {
 
     }
+
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -341,6 +366,7 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
 
         mAdapter.fragments[mViewPager.getCurrentItem()].onLoadMore(refreshLayout);
     }
+
     @Override
     public void showError(BasicResponse error, String url) {
 
@@ -348,11 +374,11 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
 
     @Override
     public void setHomeStory(Story s) {
-        if (s!=null&& s.getStatus_code()==0){
-            if (s.getData()!=null){
+        if (s != null && s.getStatus_code() == 0) {
+            if (s.getData() != null) {
                 this.stories.addAll(s.getData().getList());
-                L.e("数据装填完毕");
-                refreshLayout.autoRefresh();
+
+//                refreshLayout.autoRefresh();
 
             }
         }
@@ -362,6 +388,13 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
     @Override
     public void setHomeInfo(HomeInfo user) {
 
+    }
+
+    @Override
+    public void setFollow(Result result) {
+        if (result.getStatus_code() == 0) {
+            //关注成功
+        }
     }
 
     @OnClick({R.id.mine_setting, R.id.mine_header, R.id.mine_fmc_center_dynamic})
@@ -376,10 +409,9 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
                 startActivity(new Intent(context, PersonalActivity.class));
                 break;
             case R.id.mine_fmc_center_dynamic:
-                startActivity(new Intent(context, VintageActivity.class));
+//                startActivity(new Intent(context, VintageActivity.class));
                 break;
         }
-
 
 
     }
@@ -424,6 +456,7 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return new RecyclerView(inflater.getContext());
+
         }
 
         @Override
@@ -435,7 +468,7 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 //            mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
             L.e("开始加载数据");
-            mAdapter = new HistoryListAdapter(getContext(),R.layout.list_history_item, stories);
+            mAdapter = new HistoryListAdapter(getContext(), R.layout.list_history_item, stories);
             mAdapter.setOnItemChildClickListener(this);
             mRecyclerView.setAdapter(mAdapter);
 //            mRecyclerView.setNestedScrollingEnabled(false);
@@ -447,6 +480,8 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
 //                    holder.textColorId(android.R.id.text2, R.color.colorTextAssistant);
 //                }
 //            }*/
+
+
         }
 
 
@@ -489,4 +524,11 @@ public class MineFragment extends BaseFragment implements OnRefreshListener, OnR
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTabLayout.setFocusable(false);
+        mScrollView.setFocusable(true);
+        mViewPager.setFocusable(false);
+    }
 }

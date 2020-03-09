@@ -3,5 +3,6 @@
     <item android:color="@color/main_theme" android:state_pressed="true"/>
     <item android:color="@color/main_theme" android:state_selected="true"/>
     <item android:color="@color/main_theme" android:state_checked="true"/>
+
     <item android:color="@color/fontcolorsmall"/>
 </selector>

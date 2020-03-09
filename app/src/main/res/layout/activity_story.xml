@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".view.inn.StoryActivity">
 
-    <com.aroominn.aroom.utils.customview.TitleBar
+    <com.hjq.bar.TitleBar
         android:id="@+id/story_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.aroominn.aroom.utils.customview.TitleBar>
+    </com.hjq.bar.TitleBar>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
 

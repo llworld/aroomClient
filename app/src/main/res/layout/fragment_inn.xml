@@ -6,20 +6,33 @@
 
     <com.aroominn.aroom.utils.customview.PagerSlidingTabStrip
         android:id="@+id/inn_tab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_100"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_80"
+        android:layout_centerHorizontal="true"
         app:pstsDividerColor="@color/transparent"
         app:pstsIndicatorColor="@color/main_theme"
         app:pstsIndicatorHeight="@dimen/dimen_4"
         app:pstsShouldExpand="true"
-        app:pstsUnderlineColor="@color/gray_middle"
+        app:pstsUnderlineColor="@color/white"
         app:pstsUnderlineHeight="@dimen/dimen_2"
         app:zmsSelectedTabTextColor="@color/main_theme"
-        app:zmsSelectedTabTextSize="@dimen/font_13"
+        app:zmsSelectedTabTextSize="@dimen/font_14"
         app:zmsTabTextColor="@color/fontcolormiddle"
         app:zmsTabTextSize="@dimen/font_12">
 
     </com.aroominn.aroom.utils.customview.PagerSlidingTabStrip>
+
+    <ImageView
+        android:layout_marginRight="@dimen/dimen_8"
+        android:id="@+id/inn_vintage"
+        android:padding="@dimen/dimen_14"
+        android:src="@drawable/vintage_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_80"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/inn_vp"
@@ -33,11 +46,11 @@
         android:id="@+id/inn_notice"
         android:layout_width="@dimen/dimen_100"
         android:layout_height="@dimen/dimen_100"
-        android:padding="@dimen/dimen_10"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/dimen_20"
         android:background="@drawable/notice_border_bg"
+        android:padding="@dimen/dimen_10"
         android:src="@drawable/notice" />
 
 

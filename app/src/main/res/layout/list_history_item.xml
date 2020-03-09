@@ -41,6 +41,7 @@
                 app:rv_strokeWidth="@dimen/dimen_1">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mine_list_item_head"
                     android:src="@mipmap/floor_head"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -70,6 +71,7 @@
             app:rv_strokeWidth="@dimen/dimen_1">
 
             <TextView
+                android:visibility="gone"
                 style="@style/AppTheme.Label.Title"
                 android:layout_gravity="center_vertical"
                 android:text="斯坦芬·诺加德·安徒生 "
@@ -83,13 +85,13 @@
                 android:text="洛雷姆·伊普索姆·多尔坐在阿米特的座位上，他是一位敬业的精英，他用自己的节奏激励着劳尔和马格纳·阿利卡。但至少有一点不便，那就是要做一些不必要的事情。 "
                 android:textColor="@android:color/tertiary_text_dark" />
 
-            <GridView
+            <com.aroominn.aroom.utils.customview.MyGridView
                 android:id="@+id/history_item_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numColumns="1">
 
-            </GridView>
+            </com.aroominn.aroom.utils.customview.MyGridView>
 
         </com.flyco.roundview.RoundLinearLayout>
     </LinearLayout>

@@ -4,6 +4,8 @@ package com.aroominn.aroom.utils;
  * 常量类
  */
 public class Const {
+
+
     /************************************///String//***********************************/
     public static final String SHARE_NAME = "a_room";
 
@@ -48,6 +50,11 @@ public class Const {
     public static final String IS_CURRENT_UAER_ONLINE = "is_current_user_online";
 
     public static final String NULL = "null";
+    /////////////////////////////////////////系统设置//////////////////////////////////////////////
+    public static final String TONE = "tone";
+    public static final String VIBRATION = "vibration";
+    /////////////////////////////////////////系统设置//////////////////////////////////////////////
+
 
     /************************************///int//***********************************/
     public static final float MAX_ALPHA = 255.00000f;

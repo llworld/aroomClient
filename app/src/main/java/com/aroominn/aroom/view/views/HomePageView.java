@@ -3,6 +3,7 @@ package com.aroominn.aroom.view.views;
 
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.HomeInfo;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.bean.User;
@@ -21,4 +22,5 @@ public interface HomePageView {
     /*用户主页的个人信息*/
     void setHomeInfo(HomeInfo user);
 
+    void setFollow(Result result);
 }

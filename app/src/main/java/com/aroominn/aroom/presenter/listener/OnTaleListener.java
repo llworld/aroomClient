@@ -13,7 +13,7 @@ public interface OnTaleListener {
 
 //    void onSuccess(Story story);
 
-    void onSuccess(Comment comment);
+//    void onSuccess(Comment comment);
 
     void onSuccess(Result result);
 

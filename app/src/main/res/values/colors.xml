@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color><!--导航栏颜色-->
-    <color name="colorPrimaryDark">#817171ea</color><!--通知栏颜色-->
+    <color name="colorPrimaryDark">#00fefeff</color><!--通知栏颜色-->
     <color name="colorAccent">#2858dc</color><!--控件选中后的颜色-->
 
 
@@ -17,6 +17,7 @@
     <color name="red">#ea0f0f</color>
     <color name="blue">#2ABAFF</color>
     <color name="yellow">#FFFF00</color>
+    <color name="collect">#f4ea2a</color>
     <color name="orange">#FF9600</color>
     <color name="pink">#8f82bc</color>
 

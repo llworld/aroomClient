@@ -40,6 +40,11 @@ public class HomePagePresenterImpl implements HomePagePresenter, OnHomePageListe
         view.setHomeInfo(info);
     }
 
+    @Override
+    public void onSuccess(Result result) {
+        view.setFollow(result);
+    }
+
 
     @Override
     public void onError(BasicResponse response, String url) {
@@ -55,5 +60,15 @@ public class HomePagePresenterImpl implements HomePagePresenter, OnHomePageListe
     public void getHomeStory(BaseImpl context, JSONObject param) {
         model.HisStories(context, param);
 
+    }
+
+    @Override
+    public void getCollectStory(BaseImpl context, JSONObject param) {
+        model.collectStories(context, param);
+    }
+
+    @Override
+    public void follow(BaseImpl context, JSONObject param) {
+        model.loadFollow(context,param);
     }
 }

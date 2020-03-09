@@ -3,6 +3,7 @@ package com.aroominn.aroom.presenter.listener;
 
 import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.HomeInfo;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.bean.User;
 
@@ -16,6 +17,7 @@ public interface OnHomePageListener {
 
 
     void onSuccess(HomeInfo info);
+    void onSuccess(Result result);
 
 
     /**

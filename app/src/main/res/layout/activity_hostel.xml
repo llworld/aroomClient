@@ -8,6 +8,7 @@
     tools:context=".view.mine.personal.HostelActivity">
 
     <com.hjq.bar.TitleBar
+        android:id="@+id/hostel_title"
         app:rightTitle="修改"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
     </com.hjq.bar.TitleBar>
 
     <EditText
+        android:id="@+id/hostel_nick"
         android:layout_marginTop="@dimen/dimen_44"
         android:hint="客栈的名字"
         android:paddingLeft="@dimen/dimen_88"

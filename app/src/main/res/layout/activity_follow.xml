@@ -17,6 +17,8 @@
         android:id="@+id/follow_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:srlEnableRefresh="false"
+        app:srlEnableLoadMore="false"
         android:layout_below="@+id/follow_title">
 
         <LinearLayout

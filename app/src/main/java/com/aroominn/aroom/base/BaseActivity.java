@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -14,9 +15,8 @@ import android.view.WindowManager;
 import com.aroominn.aroom.R;
 import com.aroominn.aroom.utils.DialogUtils;
 import com.aroominn.aroom.utils.L;
-import com.aroominn.aroom.utils.StatusBarUtils;
+import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.utils.customview.TitleBar;
-import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -38,11 +38,12 @@ public abstract class BaseActivity extends BaseRxActivity implements BaseImpl {
     protected void onCreate(Bundle savedInstanceState) {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
-        super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         unbinder = ButterKnife.bind(this);
         BaseApplication.instance.addActivity(this);
@@ -51,6 +52,17 @@ public abstract class BaseActivity extends BaseRxActivity implements BaseImpl {
         initView(savedInstanceState);
         setListener();
         initData();
+
+        /*状态栏文字颜色设置为黑  应该还达到了沉浸式效果*/
+        View decor = this.getWindow().getDecorView();
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
+        StatusBarUtil.immersive(this);
+//        StatusBarUtil.StatusBarLightMode(this, StatusBarUtil.StatusBarLightMode(this));
+//        StatusBarUtil.setMargin(context, mTitleBar);
+//        StatusBarUtil.setPaddingSmart(context, ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0));
+
     }
 
     public abstract void initView(Bundle savedInstanceState);
@@ -83,7 +95,7 @@ public abstract class BaseActivity extends BaseRxActivity implements BaseImpl {
         mTitleBar.setTitle(titleId);
         mTitleBar.setTitleSize(16);
         mTitleBar.setTitleColor(getResources().getColor(R.color.fontcolordeep));
-        StatusBarUtils.StatusBarLightMode(this, StatusBarUtils.StatusBarLightMode(this));
+        StatusBarUtil.StatusBarLightMode(this, StatusBarUtil.StatusBarLightMode(this));
     }
 
 
@@ -102,7 +114,7 @@ public abstract class BaseActivity extends BaseRxActivity implements BaseImpl {
         mTitleBar.setTitle(title);
         mTitleBar.setTitleSize(16);
         mTitleBar.setTitleColor(getResources().getColor(R.color.fontcolordeep));
-        StatusBarUtils.StatusBarLightMode(this, StatusBarUtils.StatusBarLightMode(this));
+        StatusBarUtil.StatusBarLightMode(this, StatusBarUtil.StatusBarLightMode(this));
     }
 
     /**

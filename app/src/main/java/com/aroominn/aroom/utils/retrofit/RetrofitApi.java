@@ -1,6 +1,7 @@
 package com.aroominn.aroom.utils.retrofit;
 
 import com.aroominn.aroom.bean.Comment;
+import com.aroominn.aroom.bean.Friend;
 import com.aroominn.aroom.bean.HomeInfo;
 import com.aroominn.aroom.bean.PageHelper;
 import com.aroominn.aroom.bean.Result;
@@ -57,6 +58,10 @@ public interface RetrofitApi {
     @POST(UrlTools.HISTORYSTORY)
     Observable<Story> getHomeHisStory(@Body RequestBody body);
 
+    /*用户主页收藏故事*/
+    @POST(UrlTools.COLLECTSTORY)
+    Observable<Story> getCollectStory(@Body RequestBody body);
+
     //获取故事评论列表
     @POST(UrlTools.STORYDETAIL)
     Observable<PageHelper> getStoryDetails(@Body RequestBody body);
@@ -80,5 +85,51 @@ public interface RetrofitApi {
     Observable<Result> saveReport(@Part List<MultipartBody.Part> parts);
 //    Observable<Result> saveReport(@Part("info") RequestBody info,@Part List<MultipartBody.Part> parts);
 
+
+    /**
+     * 故事的操作
+     */
+    /*点赞*/
+    @POST(UrlTools.LIKETALE)
+    Observable<Result> likeTale(@Body RequestBody body);
+
+    /*收藏*/
+    @POST(UrlTools.COLLECTTALE)
+    Observable<Result> collectTale(@Body RequestBody body);
+
+    /*举报*/
+    @POST(UrlTools.REPORTTALE)
+    Observable<Result> reportTale(@Body RequestBody body);
+
+    /*转发*/
+    @POST(UrlTools.REPOSTTALE)
+    Observable<Result> repostTale(@Body RequestBody body);
+
+    /*评论*/
+    @POST(UrlTools.COMMENTTALE)
+    Observable<Result> commentTale(@Body RequestBody body);
+    /*删除*/
+    @POST(UrlTools.DELETETALE)
+    Observable<Result> deleteTale(@Body RequestBody body);
+
+    /*关注用户*/
+    @POST(UrlTools.UN_FOLLOW)
+    Observable<Result> un_follow(@Body RequestBody body);
+
+    /*获取我的朋友 我关注的*/
+    @POST(UrlTools.MYFOLLOW)
+    Observable<Friend> getBossFriends(@Body RequestBody body);
+
+
+    /*获取我的朋友  关注我的*/
+    @POST(UrlTools.FOLLOWME)
+    Observable<Friend> getWaiterFriends(@Body RequestBody body);
+
+    /*获取我的朋友  相互关注的*/
+    @POST(UrlTools.MUTUALFOLLOW)
+    Observable<Friend> getMateFriends(@Body RequestBody body);
+    /*获取我的朋友  相互关注的*/
+    @POST(UrlTools.FEEDBACK)
+    Observable<Result> getFeedBack(@Body RequestBody body);
 
 }

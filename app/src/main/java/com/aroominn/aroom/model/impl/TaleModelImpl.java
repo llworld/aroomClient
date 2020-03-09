@@ -2,6 +2,7 @@ package com.aroominn.aroom.model.impl;
 
 import com.aroominn.aroom.base.BaseImpl;
 import com.aroominn.aroom.bean.Comment;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.model.StoryModel;
 import com.aroominn.aroom.model.TaleModel;
@@ -30,32 +31,116 @@ public class TaleModelImpl implements TaleModel {
 
 
     @Override
-    public void likeStory(BaseImpl context, JSONObject param) {
+    public void loadLike(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .likeTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 
     @Override
-    public void collocationStory(BaseImpl context, JSONObject param) {
+    public void loadCollect(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .collectTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 
     @Override
-    public void reportStory(BaseImpl context, JSONObject param) {
+    public void loadReport(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .reportTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 
     @Override
-    public void repostStory(BaseImpl context, JSONObject param) {
+    public void loadRepost(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .repostTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 
     @Override
-    public void forwardStory(BaseImpl context, JSONObject param) {
+    public void loadComment(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .commentTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 
     @Override
-    public void commentStory(BaseImpl context, JSONObject param) {
+    public void loadDelete(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .deleteTale(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result result) {
+                        listener.onSuccess(result);
+                    }
 
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
     }
 }

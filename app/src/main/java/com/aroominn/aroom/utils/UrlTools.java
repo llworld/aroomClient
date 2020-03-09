@@ -5,8 +5,8 @@ package com.aroominn.aroom.utils;
  */
 public class UrlTools {
 
-    public final static String SERVERIP = "http://192.168.1.11:80/";
-//    public final static String SERVERIP = "http://192.168.1.6:80/";
+    //    public final static String SERVERIP = "http://192.168.1.11:80/";
+    public final static String SERVERIP = "http://39.106.217.117:8080/";
     //        public final static String SERVERIP = "http://47.95.245.232/";
     public final static String WEBIP = "http://47.95.122.231:8080/";
 
@@ -49,7 +49,7 @@ public class UrlTools {
     /**
      * 获取昵称头像
      */
-    public final static String FINDUSERINFO = SERVERIP + "test";
+    public final static String FINDUSERINFO = SERVERIP + "api/friends/userinfo";
 
     /**
      * 评论故事
@@ -75,6 +75,11 @@ public class UrlTools {
      */
     public final static String HISTORYSTORY = SERVERIP + "api/homepage/stories";
 
+    /**
+     * 获取主页用户故事
+     */
+    public final static String COLLECTSTORY = SERVERIP + "api/inn/personalCollect";
+
 
     /**
      * 更新用户信息
@@ -91,6 +96,65 @@ public class UrlTools {
      * 关注
      */
     ////////////////////////////////消息/////////////////////////////////////
+    ////////////////////////////////故事的操作/////////////////////////////////////
+
+    /**
+     * 点赞故事
+     */
+    public final static String LIKETALE = SERVERIP + "api/stories/like";
+
+    /**
+     * 收藏故事
+     */
+    public final static String COLLECTTALE = SERVERIP + "api/stories/collect";
+
+    /**
+     * 举报故事
+     */
+    public final static String REPORTTALE = SERVERIP + "api/stories/report";
+
+    /**
+     * 转发故事
+     */
+    public final static String REPOSTTALE = SERVERIP + "api/stories/repost";
+
+    /**
+     * 评论故事
+     */
+    public final static String COMMENTTALE = SERVERIP + "api/stories/comment";
+
+    /**
+     * 评论故事
+     */
+    public final static String DELETETALE = SERVERIP + "api/stories/destroy";
+
+    /**
+     * 关注用户
+     */
+    public final static String UN_FOLLOW = SERVERIP + "api/user/follow";
+
+    ////////////////////////////////故事的操作/////////////////////////////////////
+
+
+    ////////////////////////////////我的朋友/////////////////////////////////////
+    /**
+     * 关注我的
+     */
+    public final static String FOLLOWME = SERVERIP + "api/friends/xiaoer";
+    /**
+     * 我关注的
+     */
+    public final static String MYFOLLOW = SERVERIP + "api/friends/publican";
+    /**
+     * 相互关注
+     */
+    public final static String MUTUALFOLLOW = SERVERIP + "api/friends/partner";
+    /**
+     * 反馈信息
+     */
+    public final static String FEEDBACK = SERVERIP + "api/setting/feedbac";
+
+    ////////////////////////////////我的朋友/////////////////////////////////////
 
     /**
      * 邀请链接

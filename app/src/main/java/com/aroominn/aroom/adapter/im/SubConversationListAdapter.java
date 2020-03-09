@@ -94,10 +94,9 @@ public class SubConversationListAdapter extends ConversationListAdapter {
         if (tag.portraitPosition() == 1) {
             holder.leftImageLayout.setVisibility(View.VISIBLE);
             if (data.getIconUrl() != null) {
-        L.e(data.getIconUrl().toString()+"  not is null");
+
                 holder.leftImageView.setAvatar(data.getIconUrl().toString(), defaultId);
             } else {
-        L.e(data.getIconUrl()+"--》is null");
                 holder.leftImageView.setAvatar("https://b-ssl.duitang.com/uploads/item/201701/07/20170107102642_SCAQe.jpeg", defaultId);
 //                holder.leftImageView.setAvatar((String) null, defaultId);
             }

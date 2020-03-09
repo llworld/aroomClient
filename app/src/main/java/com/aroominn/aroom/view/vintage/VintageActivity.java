@@ -20,6 +20,7 @@ import com.aroominn.aroom.utils.KeyboardUtils;
 import com.aroominn.aroom.utils.L;
 import com.aroominn.aroom.utils.MyPermissionHelper;
 import com.aroominn.aroom.utils.SharedUtils;
+import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.utils.ToastUtils;
 import com.aroominn.aroom.utils.popupWindow.MyPopupWindow;
 import com.aroominn.aroom.view.views.UtilsView;
@@ -33,11 +34,11 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,6 +69,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.rong.imkit.utils.StringUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -113,10 +115,11 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
     private GVAdapter adapter;
     private List<Uri> mSelected;
     private UtilsPresenter utilsPresenter;
-    private String contentText;
+    private String contentText = "";
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        StatusBarUtil.setPaddingSmart(context, ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0));
 
     }
 
@@ -264,9 +267,9 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
                             .gridExpectedSize(300)//图片显示表格的大小getResources() 显示图片的大小 应该是px
 //                    .getDimensionPixelSize(R.dimen.grid_expected_size)
                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)//图像选择和预览活动所需的方向。
-                            .thumbnailScale(0.62f)//缩放比例
+                            .thumbnailScale(1f)//缩放比例
                             .theme(R.style.Matisse_Zhihu)//主题  暗色主题 R.style.Matisse_Dracula
-                            .imageEngine(new GlideEngine())//加载方式
+                            .imageEngine(new com.aroominn.aroom.utils.GlideEngine())//加载方式
                             .forResult(REQUEST_CODE_CHOOSE);//请求码
                 }
             }
@@ -289,6 +292,7 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
             case R.id.vintage_state:
                 MyPopupWindow myPopupWindow = new MyPopupWindow(context);
                 myPopupWindow.showPopupWindow(storyState);
+
 
                 myPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
                     @Override
@@ -333,6 +337,9 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            /**
+             * 最后的的  加号   会显示图片？？？？？
+             */
             mSelected = Matisse.obtainResult(data);
             mSelected.add(Uri.parse(IMG_ADD_TAG));
             refreshAdapter();
@@ -410,7 +417,7 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
 
     public void getRequestParam() {
 
-        if (contentText.equals("") && mSelected.size() < 1) {
+        if (TextUtils.isEmpty(contentText) || mSelected.size() < 1) {
             ToastUtils.showBottomToast("请输入内容", 0);
             return;
         }
@@ -447,12 +454,12 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return mSelected.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         @Override

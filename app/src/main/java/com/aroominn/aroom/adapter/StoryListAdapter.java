@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.aroominn.aroom.R;
@@ -12,6 +14,7 @@ import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.utils.L;
 import com.aroominn.aroom.utils.TimeUtils;
 import com.aroominn.aroom.utils.TimerUtils;
+import com.aroominn.aroom.utils.customview.MyGridView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -42,8 +45,10 @@ public class StoryListAdapter extends BaseQuickAdapter<Stories, BaseViewHolder> 
         helper.addOnClickListener(R.id.story_item_like);
         helper.addOnClickListener(R.id.story_item_comment);
         helper.addOnClickListener(R.id.story_item_repost);
+        helper.addOnClickListener(R.id.story_item_collect);
 
-                                                                                                      helper.setText(R.id.story_item_time, TimeUtils.getInstance().formatTime(item.getTimes()));
+
+        helper.setText(R.id.story_item_time, TimeUtils.getInstance().formatTime(item.getTimes()));
         if (!TextUtils.isEmpty(item.getContent())) {
             helper.setText(R.id.story_item_content, item.getContent());
         }
@@ -60,9 +65,15 @@ public class StoryListAdapter extends BaseQuickAdapter<Stories, BaseViewHolder> 
             like.setChecked(true);
         }
 
+        ShineButton collect = helper.getView(R.id.story_item_collect);
+        if (item.getIsCollection() > 0) {
+            collect.setChecked(true);
+        }
+
         ImageView logoview = helper.getView(R.id.story_item_head);
         Glide.with(context)
                 .load(item.getHead())
+                .thumbnail(0.5f)
                 .into(logoview);
 //            helper.setImage(R.id.story_item_head,"");
 //    }
@@ -73,7 +84,7 @@ public class StoryListAdapter extends BaseQuickAdapter<Stories, BaseViewHolder> 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            List<String> list = new ArrayList<>();
+            final List<String> list = new ArrayList<>();
             for (int i = 0; i < myJsonArray.length(); i++) {
                 try {
                     list.add(myJsonArray.getString(i));
@@ -84,7 +95,29 @@ public class StoryListAdapter extends BaseQuickAdapter<Stories, BaseViewHolder> 
 //            JSONArray array = new JSONArray();
 //            List<T> list = JSONObject.parseArray(array.toJSONString(), T.class);
             imagesListAdapter = new ImagesListAdapter(this.context, list);
-            helper.setAdapter(R.id.story_item_grid, imagesListAdapter);
+
+            MyGridView gridView = helper.getView(R.id.story_item_grid);
+
+            gridView.setAdapter(imagesListAdapter);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    mClickListener.onImageClick(list.get(i));
+                }
+            });
+//            helper.setAdapter(R.id.story_item_grid, imagesListAdapter);
         }
     }
+
+    public void setImage(HistoryListAdapter.ImageItemClickListener i) {
+        mClickListener = i;
+    }
+
+    HistoryListAdapter.ImageItemClickListener mClickListener;
+
+    public interface ImageItemClickListener {
+        void onImageClick(String p);
+    }
+
+
 }

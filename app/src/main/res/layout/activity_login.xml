@@ -48,6 +48,7 @@
     </android.support.v4.view.ViewPager>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/login_three_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

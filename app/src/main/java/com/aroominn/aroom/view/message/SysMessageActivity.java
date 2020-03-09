@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
+
 import com.aroominn.aroom.R;
 import com.aroominn.aroom.base.BaseActivity;
 import com.aroominn.aroom.utils.L;
+import com.aroominn.aroom.utils.StatusBarUtil;
 
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
@@ -17,6 +20,7 @@ public class SysMessageActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        StatusBarUtil.setPaddingSmart(context,  ((ViewGroup)this.findViewById(android.R.id.content)).getChildAt(0));
 
     }
 

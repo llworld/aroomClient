@@ -49,19 +49,6 @@ public class FollowActivity extends BaseActivity implements OnRefreshListener, O
     private FollowPagerAdapter mAdapter;
 
 
-    public enum Item {
-        NestedWaiter(R.string.waiter_text, FollowFragment.class),
-        NestedMate(R.string.mate_text, FollowFragment.class),
-        NestedBoss(R.string.boss_text, FollowFragment.class),;
-        public int nameId;
-        public Class<? extends Fragment> clazz;
-
-        Item(@StringRes int nameId, Class<? extends Fragment> clazz) {
-            this.nameId = nameId;
-            this.clazz = clazz;
-        }
-    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
         initTitleBar(mTitleBar, R.string.title_follow);
@@ -78,8 +65,15 @@ public class FollowActivity extends BaseActivity implements OnRefreshListener, O
     @Override
     public void initData() {
 
-        mAdapter = new FollowPagerAdapter(getSupportFragmentManager(),context, Item.values());
+        String[] titles = getResources().getStringArray(R.array.follow_type);
+        String[] fragments = new String[]{
+                WaiterFragment.class.getSimpleName(),
+                MateFragment.class.getSimpleName(),
+                BossFragment.class.getSimpleName()};
+
+        mAdapter = new FollowPagerAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(titles.length);
         mTabLayout.setupWithViewPager(mViewPager, true);
     }
 
@@ -90,12 +84,12 @@ public class FollowActivity extends BaseActivity implements OnRefreshListener, O
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mAdapter.fragments[mViewPager.getCurrentItem()].onLoadMore(refreshLayout);
+//        mAdapter.fragments[mViewPager.getCurrentItem()].onLoadMore(refreshLayout);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        mAdapter.fragments[mViewPager.getCurrentItem()].onRefresh(refreshLayout);
+//        mAdapter.fragments[mViewPager.getCurrentItem()].onRefresh(refreshLayout);
     }
 
 }

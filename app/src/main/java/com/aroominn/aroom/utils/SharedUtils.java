@@ -21,6 +21,8 @@ public class SharedUtils {
     private static SharedUtils sharedUtile = null;
     public static SharedPreferences mPreferences;
     public Editor mEditor;
+    private boolean tone;
+    private boolean vibration;
 
 
     public void init(Context context) {
@@ -235,5 +237,23 @@ public class SharedUtils {
     public void setFirst(boolean isFirst) {
         mEditor.putBoolean(Const.IS_FIRST, isFirst);
         mEditor.commit();
+    }
+
+    public void setTone(boolean tone) {
+        mEditor.putBoolean(Const.TONE, tone);
+        mEditor.commit();
+    }
+
+    public boolean getTone() {
+        return mPreferences.getBoolean(Const.TONE, true);
+    }
+
+    public void setVibration(boolean vibration) {
+        mEditor.putBoolean(Const.VIBRATION, vibration);
+        mEditor.commit();
+    }
+
+    public boolean getVibration() {
+        return mPreferences.getBoolean(Const.VIBRATION, true);
     }
 }

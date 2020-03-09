@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.aroominn.aroom.R;
 import com.aroominn.aroom.utils.DialogUtils;
-import com.aroominn.aroom.utils.StatusBarUtils;
+import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.utils.customview.TitleBar;
 
 import butterknife.ButterKnife;
@@ -100,7 +100,7 @@ public abstract class BaseFragment extends Fragment implements BaseImpl {
         mTitleBar.setTitle(titleId);
         mTitleBar.setTitleSize(16);
         mTitleBar.setTitleColor(getResources().getColor(R.color.fontcolordeep));
-        StatusBarUtils.StatusBarLightMode(getActivity(),StatusBarUtils.StatusBarLightMode(getActivity()));
+        StatusBarUtil.StatusBarLightMode(getActivity(), StatusBarUtil.StatusBarLightMode(getActivity()));
     }
 
     @SuppressLint("InlinedApi")
@@ -118,7 +118,7 @@ public abstract class BaseFragment extends Fragment implements BaseImpl {
         mTitleBar.setTitle(title);
         mTitleBar.setTitleSize(16);
         mTitleBar.setTitleColor(getResources().getColor(R.color.fontcolordeep));
-        StatusBarUtils.StatusBarLightMode(getActivity(),StatusBarUtils.StatusBarLightMode(getActivity()));
+        StatusBarUtil.StatusBarLightMode(getActivity(),StatusBarUtil.StatusBarLightMode(getActivity()));
     }
 
     /**

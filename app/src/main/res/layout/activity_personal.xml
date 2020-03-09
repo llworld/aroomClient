@@ -232,6 +232,7 @@
             android:layout_height="match_parent">
 
             <Button
+                android:id="@+id/login_out"
                 android:layout_marginHorizontal="@dimen/dimen_48"
                 android:layout_marginTop="@dimen/dimen_48"
                 android:textSize="@dimen/font_18"

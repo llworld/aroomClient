@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <EditText
-        android:text="18866668888"
-        android:inputType="phone"
         android:id="@+id/account_phone_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_120"
-        android:layout_marginTop="@dimen/dimen_120"
+        android:layout_marginTop="@dimen/dimen_144"
         android:hint="@string/input_phone"
+        android:inputType="phone"
+        android:text="18866668888"
         android:textSize="@dimen/font_16" />
 
     <EditText
-        android:text="111111"
-        android:inputType="textPassword"
+        android:layout_below="@+id/account_phone_et"
         android:id="@+id/account_pass_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_120"
         android:layout_marginTop="@dimen/dimen_20"
         android:hint="@string/input_password"
+        android:inputType="textPassword"
+        android:text="111111"
         android:textSize="@dimen/font_16" />
 
     <Button
+        android:layout_below="@+id/account_pass_et"
         android:id="@+id/account_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_120"
-        android:layout_marginTop="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_100"
+        android:background="@drawable/login_btn_bg"
         android:gravity="center"
         android:padding="@dimen/dimen_12"
-        android:background="@drawable/login_btn_bg"
         android:text="@string/login_text"
         android:textColor="@color/white"
         android:textSize="@dimen/font_20" />
 
-</LinearLayout>
+</RelativeLayout>

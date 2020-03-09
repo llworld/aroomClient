@@ -41,7 +41,13 @@ public class SubConversationListFragment extends ConversationListFragment {
     }
 
     //重写此方法，来填充头部布局。无会话时不显示，需要在布局中添加填充的头部布局。
+
     @Override
+    protected List<View> onAddHeaderView() {
+        return super.onAddHeaderView();
+    }
+
+/*    @Override
     protected List<View> onAddHeaderView() {
         List<View> headerViews = super.onAddHeaderView();
         TextView textView = new TextView(this.getActivity());
@@ -49,5 +55,5 @@ public class SubConversationListFragment extends ConversationListFragment {
         textView.setText("这是添加的头部布局");
         headerViews.add(textView);
         return headerViews;
-    }
+    }*/
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".view.mine.setting.FeedBackActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/feedback_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="反馈">
+
+    </com.hjq.bar.TitleBar>
+
+
+    <EditText
+        android:id="@+id/feedback_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_400"
+        android:layout_below="@+id/feedback_title"
+        android:layout_marginHorizontal="@dimen/dimen_24"
+        android:layout_marginTop="@dimen/dimen_40"
+        android:background="@drawable/comment_input"
+        android:gravity="top|left"
+        android:maxHeight="@dimen/dimen_500"
+        android:maxLength="5" />
+
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/feedback_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_200"
+        android:layout_marginHorizontal="@dimen/dimen_48"
+        android:text="@string/rc_cs_submit"
+        app:normalBackgroundColor="@color/main_theme"
+        app:normalTextColor="@color/white"
+        app:pressedBackgroundColor="@color/colorAccent"
+        app:radius="@dimen/dimen_18" />
+
+</RelativeLayout>

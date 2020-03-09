@@ -19,6 +19,15 @@ public class Stories implements Serializable {
     private String phone;       //用户手机号
     private int category;       //用户类别(根据类别添加标签)
     private int isLike;         //当前用户是否点赞 非0为点赞
+    private int isCollection;         //当前用户是否收藏 非0为收藏
+
+    public int getIsCollection() {
+        return isCollection;
+    }
+
+    public void setIsCollection(int isCollection) {
+        this.isCollection = isCollection;
+    }
 
     public int getIsLike() {
         return isLike;

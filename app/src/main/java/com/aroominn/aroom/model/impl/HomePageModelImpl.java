@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 import com.aroominn.aroom.base.BaseImpl;
 import com.aroominn.aroom.bean.Comment;
 import com.aroominn.aroom.bean.HomeInfo;
+import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.model.HomePageModel;
 import com.aroominn.aroom.model.StoryModel;
@@ -54,6 +55,44 @@ public class HomePageModelImpl implements HomePageModel {
     public void HisStories(BaseImpl context, JSONObject param) {
         RetrofitRequest.getApiService()
                 .getHomeHisStory(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Story>(context, false) {
+                    @Override
+                    public void onSuccess(Story info) {
+                        listener.onSuccess(info);
+                    }
+
+                    @Override
+                    public void onFail(Story response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
+    }
+
+    @Override
+    public void loadFollow(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .un_follow(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<Result>(context, false) {
+                    @Override
+                    public void onSuccess(Result info) {
+                        listener.onSuccess(info);
+                    }
+
+                    @Override
+                    public void onFail(Result response) {
+                        listener.onError(response, STORYLIST);
+                    }
+                });
+    }
+
+    @Override
+    public void collectStories(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .getCollectStory(RetrofitRequest.getJSONBody(param))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DefaultObserver<Story>(context, false) {

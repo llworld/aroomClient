@@ -16,7 +16,7 @@
 
     <com.flyco.roundview.RoundLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/title_phone"
         android:layout_margin="@dimen/dimen_44"
         android:background="@color/green"
@@ -32,18 +32,19 @@
             android:hint="原手机号"
             android:inputType="phone"
             android:paddingLeft="@dimen/dimen_14"
-            android:textSize="@dimen/font_14" />
+            android:textSize="@dimen/font_14"
+            android:visibility="gone" />
 
         <View
             style="@style/line_view"
             android:layout_marginLeft="@dimen/dimen_4" />
 
         <EditText
+            android:id="@+id/phone_phone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_88"
-
             android:background="@color/white"
-            android:hint="新手机号"
+            android:hint="请输入新手机号"
             android:inputType="phone"
             android:paddingLeft="@dimen/dimen_14"
             android:textSize="@dimen/font_14" />
@@ -57,16 +58,19 @@
             android:layout_height="@dimen/dimen_88">
 
             <EditText
+                android:id="@+id/phone_vcode"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_88"
                 android:layout_toLeftOf="@+id/phone_getVcode"
                 android:background="@color/white"
-                android:hint="新手机号"
+                android:hint="输入验证码"
                 android:inputType="phone"
                 android:paddingLeft="@dimen/dimen_14"
                 android:textSize="@dimen/font_14" />
 
-            <com.deadline.statebutton.StateButton
+            <TextView
+                android:inputType="number"
+                android:paddingHorizontal="@dimen/dimen_20"
                 android:id="@+id/phone_getVcode"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dimen_68"
@@ -74,9 +78,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="获取验证码"
-                android:textSize="@dimen/font_10"
-                app:normalBackgroundColor="@color/gray_small"
-                app:unableBackgroundColor="@color/main_theme" />
+                android:textSize="@dimen/font_12"
+                android:background="@color/orange_dark"/>
 
             <View
                 style="@style/line_view"
@@ -85,19 +88,22 @@
                 android:layout_marginTop="@dimen/dimen_4" />
         </RelativeLayout>
 
-
-        <com.deadline.statebutton.StateButton
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_78"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="@dimen/dimen_44"
-            android:layout_marginTop="@dimen/dimen_444"
-            android:gravity="center"
-            android:text="修改"
-            app:normalBackgroundColor="@color/gray_small"
-            app:unableBackgroundColor="@color/main_theme" />
-
     </com.flyco.roundview.RoundLinearLayout>
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/phone_alter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_78"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/dimen_88"
+        android:layout_marginHorizontal="@dimen/dimen_100"
+        android:layout_marginTop="@dimen/dimen_444"
+        android:gravity="center"
+        android:text="修改"
+        app:normalBackgroundColor="@color/gray_small"
+        app:radius="@dimen/dimen_8"
+        app:unableBackgroundColor="@color/main_theme" />
+
 
 </RelativeLayout>
