@@ -20,6 +20,7 @@ import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
 import com.aroominn.aroom.presenter.StoryPresenter;
 import com.aroominn.aroom.presenter.impl.StoryPresenterImpl;
+import com.aroominn.aroom.utils.SharedUtils;
 import com.aroominn.aroom.utils.ToastUtils;
 import com.aroominn.aroom.utils.popupWindow.ImagePopup;
 import com.aroominn.aroom.view.views.StoryView;
@@ -94,9 +95,10 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
             @Override
             public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                 refresh = false;
-                if (pageNum < maxPageNum)
+                if (pageNum < maxPageNum) {
                     pageNum++;
-                else {
+                    getRequestData();
+                } else {
                     refreshLayout.finishLoadMore();
 //                    ToastUtils.showBottomToast("没有更多数据了", 0);
                 }
@@ -204,9 +206,18 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
         switch (view.getId()) {
 
             case R.id.story_item_head:
-                ToastUtils.showBottomToast("查看主页" + position, 0);
+                String targetId = stories.get(position).getUserId() + "";
+                if (SharedUtils.getInstance().getUserID() + "" == targetId) {
+                    ToastUtils.showBottomToast("不能查看自己主页", 1);
+                    break;
+                }
                 Intent intent = new Intent(context, HomepageActivity.class);
+                intent.putExtra("targetId", targetId);
+                intent.putExtra("title", stories.get(position).getNick());
                 startActivity(intent);
+
+                ToastUtils.showBottomToast("查看主页" + position, 0);
+
                 break;
             case R.id.story_item_like:
                 ToastUtils.showBottomToast("点赞" + position, 0);

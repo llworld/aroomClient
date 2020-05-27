@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import io.rong.imkit.RongIM;
+
 
 public class TimeUtils {
     public static TimeUtils getInstance() {

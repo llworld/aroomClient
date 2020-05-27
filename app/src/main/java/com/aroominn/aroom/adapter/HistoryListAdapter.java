@@ -53,7 +53,7 @@ public class HistoryListAdapter extends BaseQuickAdapter<Stories, BaseViewHolder
                 .load(item.getHead())
                 .thumbnail(0.2f)
                 .into(head);
-        if (item.getImages() != null) {
+        if (item.getImages() != null && !item.getImages().equals("[]")) {
             JSONArray myJsonArray = null;
             try {
                 myJsonArray = new JSONArray(item.getImages());

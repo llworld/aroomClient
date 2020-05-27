@@ -96,10 +96,6 @@ dependencies {
 
     /*标题栏*/
     implementation 'com.hjq:titlebar:5.0'
-
-
-
-
     implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
     implementation 'com.sackcentury:shinebutton:0.2.0'
 
@@ -117,38 +113,38 @@ dependencies {
     //    implementation 'com.android.support:support-emoji-appcompat:27.1.1'
 
     /*
-                            1、添加emoji元数据库和兼容性控件库
+                                1、添加emoji元数据库和兼容性控件库
 
-                        implementation 'com.android.support:support-emoji-bundled:26.0.0'
-                        implementation 'com.android.support:support-emoji-appcompat:26.0.0'
+                            implementation 'com.android.support:support-emoji-bundled:26.0.0'
+                            implementation 'com.android.support:support-emoji-appcompat:26.0.0'
 
 
-                        　　2、布局文件中使用兼容性控件
+                            　　2、布局文件中使用兼容性控件
 
-                        <android.support.text.emoji.widget.EmojiAppCompatTextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"/>
+                            <android.support.text.emoji.widget.EmojiAppCompatTextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"/>
 
-                        <android.support.text.emoji.widget.EmojiAppCompatEditText
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"/>
+                            <android.support.text.emoji.widget.EmojiAppCompatEditText
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"/>
 
-                        <android.support.text.emoji.widget.EmojiAppCompatButton
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"/>
+                            <android.support.text.emoji.widget.EmojiAppCompatButton
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"/>
 
-                        　　3、在使用的activity创建时初始化
+                            　　3、在使用的activity创建时初始化
 
-                        public class MyActivity extends Activity {
-                            @Override
-                            public void onCreate() {
-                                super.onCreate();
-                                EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-                                EmojiCompat.init(config);
-                                ...
+                            public class MyActivity extends Activity {
+                                @Override
+                                public void onCreate() {
+                                    super.onCreate();
+                                    EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+                                    EmojiCompat.init(config);
+                                    ...
+                                }
                             }
-                        }
-                            * */
+                                * */
 
     //    开关按钮
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
@@ -157,14 +153,18 @@ dependencies {
     api 'com.zhihu.android:matisse:0.5.2-beta4'
 
     /**jiguang */
-//    api 'cn.jiguang.sdk:jmessage:2.9.0'
+
+    //    api 'cn.jiguang.sdk:jmessage:2.9.0'
 
     // 此处以JMessage 2.9.0 版本为例。
-//    api 'cn.jiguang.sdk:jcore:2.0.0'
+
+    //    api 'cn.jiguang.sdk:jcore:2.0.0'
 
     // 此处以JCore 2.0.0 版本为例。
-//    api 'cn.jiguang.sdk:jpush:3.1.6'
-//    api 'cn.jiguang.sdk:jverification:2.5.2'
+
+    //    api 'cn.jiguang.sdk:jpush:3.1.6'
+
+    //    api 'cn.jiguang.sdk:jverification:2.5.2'
 
     // 此处以2.3.4 版本为例。
 
@@ -182,10 +182,20 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:1.2.6'
 
     //    https://github.com/pengjianbo/GalleryFinal
-//    implementation files('libs/jsms_android-1.2.4.jar')
-//    implementation project(':IMkit')
-//    implementation project(':IMLib')
-    api 'cn.rongcloud.sdk:im_kit:2.10.0'
-//im_kit必须依赖im_lib，所以需要加入对应依赖
-    api 'cn.rongcloud.sdk:im_lib:2.10.0'
+
+    //    implementation files('libs/jsms_android-1.2.4.jar')
+
+    //    implementation project(':IMkit')
+
+    //    implementation project(':IMLib')
+
+    //    api 'cn.rongcloud.sdk:im_kit:2.10.0'
+
+    //    api 'cn.rongcloud.sdk:im_lib:2.10.5'
+
+    //im_kit必须依赖im_lib，所以需要加入对应依赖
+
+    //    api 'cn.rongcloud.sdk:im_kit:2.10.5'
+    implementation project(':IMLib')
+    implementation project(':IMkit')
 }

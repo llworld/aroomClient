@@ -118,8 +118,11 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
             @Override
             public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                 refresh = false;
-                if (pageNum < maxPageNum)
+                if (pageNum < maxPageNum){
                     pageNum++;
+                    getRequestData();
+                }
+
                 else {
                     refreshLayout.finishLoadMore();
                 }
@@ -258,9 +261,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
         talePresenter = new TalePresenterImpl(this);
     }
 
-    /**
-     * 图片应该跳转到activity再进行查看
-     */
+
 
     /**
      * 子空间的点击事件
@@ -275,9 +276,16 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
         switch (view.getId()) {
 
             case R.id.story_item_head:
+
+                String targetId = stories.get(position).getUserId() + "";
+                if (SharedUtils.getInstance().getUserID()+""==targetId){
+                    ToastUtils.showBottomToast("不能查看自己主页",1);
+
+                    break;
+                }
+
                 ToastUtils.showBottomToast("查看主页" + position, 0);
                 Intent intent = new Intent(context, HomepageActivity.class);
-                String targetId = stories.get(position).getUserId() + "";
                 intent.putExtra("targetId", targetId);
                 intent.putExtra("title", stories.get(position).getNick());
                 startActivity(intent);
@@ -370,7 +378,6 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
 
     @Override
     public void setStory(Story story) {
-
         if (story.getStatus_code() == 0) {
             maxPageNum = story.getData().getPageNum();
             tempStories = story.getData().getList();
@@ -383,7 +390,6 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
                 //加载数据
                 stories.addAll(tempStories);
                 adapter.addData(stories);
-//                adapter.replaceData(story.getData().getList());
             }
         }
     }

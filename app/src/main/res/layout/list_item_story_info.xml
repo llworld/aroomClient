@@ -35,6 +35,7 @@
         android:textSize="@dimen/font_12" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/story_info_floor"
         android:layout_width="@dimen/dimen_80"
         android:layout_height="wrap_content"

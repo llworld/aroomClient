@@ -5,7 +5,7 @@ package com.aroominn.aroom.utils;
  */
 public class UrlTools {
 
-    //    public final static String SERVERIP = "http://192.168.1.11:80/";
+//        public final static String SERVERIP = "http://192.168.1.14:8080/";
     public final static String SERVERIP = "http://39.106.217.117:8080/";
     //        public final static String SERVERIP = "http://47.95.245.232/";
     public final static String WEBIP = "http://47.95.122.231:8080/";
@@ -36,10 +36,8 @@ public class UrlTools {
      */
     public final static String STORYLIST = SERVERIP + "api/inn/all";
 
-    /**
-     * 发布故事
-     */
-    public final static String STORYBREWING = SERVERIP + "api/stories/brewing";
+
+
 
     /**
      * 获取故事评论列表
@@ -61,9 +59,10 @@ public class UrlTools {
      */
     public final static String STORYLIKE = SERVERIP + "api/stories/operation";
 
-
+    /**
+     * 发布故事
+     */
     public final static String STORYUPLOAD = SERVERIP + "api/stories/upload";
-//    public final static String STORYBREWING = SERVERIP + "api/stories/brewing";
 
 
     /**

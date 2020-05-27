@@ -31,14 +31,16 @@ public class StoryModelImpl implements StoryModel {
     public void loadStory(BaseImpl context, JSONObject param) {
         RetrofitRequest.getApiService()
                 .getStory(RetrofitRequest.getJSONBody(param))
+                //子线程请求数据
                 .subscribeOn(Schedulers.io())
+                //主线程处理数据
                 .observeOn(AndroidSchedulers.mainThread())
+                //请求完成的回调
                 .subscribe(new DefaultObserver<Story>(context, false) {
                     @Override
                     public void onSuccess(Story story) {
                         listener.onSuccess(story);
                     }
-
                     @Override
                     public void onFail(Story response) {
                         listener.onError(response, STORYLIST);

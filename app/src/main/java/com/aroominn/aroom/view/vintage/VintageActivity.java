@@ -265,7 +265,7 @@ public class VintageActivity extends BaseActivity implements MyPermissionHelper.
                             .countable(true)//有序选择图片
                             .maxSelectable(9)//最大选择数量为9
                             .gridExpectedSize(300)//图片显示表格的大小getResources() 显示图片的大小 应该是px
-//                    .getDimensionPixelSize(R.dimen.grid_expected_size)
+//                          .getDimensionPixelSize(R.dimen.grid_expected_size)
                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)//图像选择和预览活动所需的方向。
                             .thumbnailScale(1f)//缩放比例
                             .theme(R.style.Matisse_Zhihu)//主题  暗色主题 R.style.Matisse_Dracula

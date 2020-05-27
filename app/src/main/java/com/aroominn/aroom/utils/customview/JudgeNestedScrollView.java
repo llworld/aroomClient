@@ -7,14 +7,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
-/**
- * @Created SiberiaDante
- * @Describe：
- * @CreateTime: 2017/12/17
- * @UpDateTime:
- * @Email: 2654828081@qq.com
- * @GitHub: https://github.com/SiberiaDante
- */
+
 
 public class JudgeNestedScrollView extends NestedScrollView {
     private boolean isNeedScroll = true;

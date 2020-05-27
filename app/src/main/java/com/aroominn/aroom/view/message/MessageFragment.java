@@ -60,7 +60,9 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void initData(Bundle savedInstanceState) {
 
+        //声明融云的会话列表fragment
         SubConversationListFragment mConversationListFragment = new SubConversationListFragment();
+        //声明URI path参数为Fragment的Id
         Uri uri = Uri.parse("rong://" + context.getApplicationInfo().packageName).buildUpon()
                 .appendPath("conversationlist")
                 .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false")
@@ -70,10 +72,11 @@ public class MessageFragment extends BaseFragment {
                 .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "true")
                 .build();
         mConversationListFragment.setUri(uri);
+        //获取fragment管理
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.subconversationlist, mConversationListFragment);
 //        transaction.replace("自己的布局", "融云的布局(可自定义)");
+        transaction.replace(R.id.subconversationlist, mConversationListFragment);
         transaction.commit();
 
 

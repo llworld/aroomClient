@@ -27,6 +27,7 @@ import com.aroominn.aroom.utils.StatusBarUtil;
 import com.aroominn.aroom.im.IMListener;
 import com.aroominn.aroom.utils.rongcloud.NotificationChannelUtil;
 import com.aroominn.aroom.view.inn.InnFragment;
+import com.aroominn.aroom.view.login.LoginActivity;
 import com.aroominn.aroom.view.message.MessageFragment;
 import com.aroominn.aroom.view.mine.MineFragment;
 import com.aroominn.aroom.view.radio.RadioFragment;
@@ -191,6 +192,10 @@ public class MainActivity extends BaseActivity {
             // 把当前tab设为选中状态
             mTabs[index].setSelected(true);
             currentTabIndex = index;
+        }
+        if (!SharedUtils.getInstance().getLogin()){
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 

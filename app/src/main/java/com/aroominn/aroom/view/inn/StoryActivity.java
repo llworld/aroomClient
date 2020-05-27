@@ -31,6 +31,8 @@ import com.aroominn.aroom.utils.KeyboardUtils;
 import com.aroominn.aroom.utils.L;
 import com.aroominn.aroom.utils.SharedUtils;
 import com.aroominn.aroom.utils.StatusBarUtil;
+import com.aroominn.aroom.utils.TimeUtils;
+import com.aroominn.aroom.utils.TimerUtils;
 import com.aroominn.aroom.utils.ToastUtils;
 import com.aroominn.aroom.utils.popupWindow.CommentPopup;
 import com.aroominn.aroom.utils.popupWindow.OnPopupItemClickListener;
@@ -97,6 +99,8 @@ public class StoryActivity extends BaseActivity implements StoryView, TaleView {
     private CommentPopup mCommentPopup;
     private boolean isLastPage = true;
     private ShineButton collect;
+    private int maxPageNum;
+    private boolean hasNextPage;
 
     @Override
     public void initView(Bundle savedInstanceState) {
@@ -210,14 +214,17 @@ public class StoryActivity extends BaseActivity implements StoryView, TaleView {
         mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                if (isLastPage) {
+
+                //还有下一页就继续请求 没有就借助
+                if (hasNextPage) {
+
+                    pageNum++;
+                    isLoadMore = true;
+                    getRequestParam();
+                    refreshLayout.finishLoadMore(2000);
+                } else
                     refreshLayout.finishLoadMoreWithNoMoreData();
-                    return;
-                }
-                pageNum++;
-                isLoadMore = true;
-                getRequestParam();
-                refreshLayout.finishLoadMore(2000);
+
             }
         });
     }
@@ -345,6 +352,7 @@ public class StoryActivity extends BaseActivity implements StoryView, TaleView {
         talePresenter.collocationStory(this, param);
     }
 
+    //请求评论信息
     private void getRequestParam() {
         JSONObject param = new JSONObject();
         try {
@@ -428,12 +436,12 @@ public class StoryActivity extends BaseActivity implements StoryView, TaleView {
             ToastUtils.showBottomToast(this, result.getData().toString());
 
             if (result.getData().toString().equals("评论成功")) {
+                pageNum = 1;
+                comments.clear();
+                isLoadMore = false;
+                getRequestParam();
                 /*删除文字 更新评论内容*/
-                Comment newComment = new Comment();
-                newComment.setContent(commentText.getText().toString());
-                newComment.setHead(SharedUtils.getInstance().getUser().getHead());
-                newComment.setTimes(new Date().toLocaleString());
-                comments.add(newComment);
+
                 commentText.setText("");
                 KeyboardUtils.getInstance().hideSoftKeyboard(commentText);
                 adapter.notifyDataSetChanged();
@@ -460,9 +468,12 @@ public class StoryActivity extends BaseActivity implements StoryView, TaleView {
     public void setStoryDetails(PageHelper comment) {
         if (comment.getStatus_code() == 0) {
             isLastPage = comment.getData().isLastPage();
+            maxPageNum = comment.getData().getPageNum();
+            hasNextPage = comment.getData().isHasNextPage();
             if (isLoadMore) {
                 comments.addAll(comment.getData().getList());
-                adapter.addData(comments);
+                adapter.notifyDataSetChanged();
+//                adapter.addData(comments);
             } else {
                 isLastPage = false;
                 comments = comment.getData().getList();

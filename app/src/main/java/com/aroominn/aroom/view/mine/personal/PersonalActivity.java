@@ -121,12 +121,12 @@ public class PersonalActivity extends BaseActivity implements PersonalView, OnPo
             case R.id.personal_email_layout:
                 break;
             case R.id.login_out:
-                startActivity(new Intent(this, LoginActivity.class));
-                SharedUtils.getInstance().setUserID(null);
+                SharedUtils.getInstance().setUserID(0);
                 SharedUtils.getInstance().setToken("");
                 SharedUtils.getInstance().setLogin(false);
-                SharedUtils.getInstance().setUser(null);
+                SharedUtils.getInstance().setUser(new User().getData());
                 finish();
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
     }

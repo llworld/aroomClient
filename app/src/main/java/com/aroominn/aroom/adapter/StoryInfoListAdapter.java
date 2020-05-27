@@ -9,6 +9,7 @@ import com.aroominn.aroom.R;
 import com.aroominn.aroom.bean.Comment;
 import com.aroominn.aroom.bean.Stories;
 import com.aroominn.aroom.bean.Story;
+import com.aroominn.aroom.utils.TimeUtils;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -26,7 +27,7 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
         super(layoutResId, data);
     }
 
-    int i = 1;
+//    int i = 1;
 
     @Override
     protected void convert(BaseViewHolder helper, Comment item) {
@@ -45,6 +46,7 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
 //        }
 //
 //        ImageView logoview = helper.getView(R.id.story_item_head);
+            helper.setText(R.id.story_info_time, TimeUtils.getInstance().formatTime(item.getTimes()));
             CircleImageView test = helper.getView(R.id.story_info_item_head);
 //        Glide.with(mContext)
 //                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547389787791&di=291e063713a0240a2a686fea173b6ae6&imgtype=0&src=http%3A%2F%2Fimg4q.duitang.com%2Fuploads%2Fitem%2F201503%2F12%2F20150312185948_veyXW.thumb.700_0.jpeg")
@@ -53,8 +55,8 @@ public class StoryInfoListAdapter extends BaseQuickAdapter<Comment, BaseViewHold
 //                .into(logoview);
 //
 
-            helper.setText(R.id.story_info_floor, i + "楼");
-            i++;
+//            helper.setText(R.id.story_info_floor, i + "楼");
+//            i++;
             helper.setText(R.id.story_info_reply_text, item.getContent());
 
             if (item.getNick() != null) {

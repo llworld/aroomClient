@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/dimen_144"
         android:hint="@string/input_phone"
         android:inputType="phone"
-        android:text="18866668888"
+        android:text=""
         android:textSize="@dimen/font_16" />
 
     <EditText
@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/dimen_20"
         android:hint="@string/input_password"
         android:inputType="textPassword"
-        android:text="111111"
+        android:text=""
         android:textSize="@dimen/font_16" />
 
     <Button

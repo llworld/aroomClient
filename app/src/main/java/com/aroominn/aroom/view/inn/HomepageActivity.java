@@ -243,7 +243,10 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
                 break;
             case R.id.homepage_attention:
                 JSONObject param = new JSONObject();
-                if (follow.getText().equals(R.string.unfollow)) {
+                String followStatus=follow.getText().toString();
+                String foll=getResources().getString(R.string.follow);
+                String unfollow=getResources().getString(R.string.unfollow);
+                if (followStatus.equals(foll)) {
                     /*关注操作*/
 
                     try {
@@ -256,7 +259,7 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
                     }
                     presenter.follow(this, param);
                 }
-                if (follow.getText().equals(R.string.follow)) {
+                if (followStatus.equals(unfollow)) {
                     /*取消关注操作*/
                     try {
                         param.put("userId", SharedUtils.getInstance().getUserID());
@@ -319,6 +322,13 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
     public void setFollow(Result result) {
         if (result.getStatus_code() == 0) {
             //关注成功
+
+            if (follow.getText().equals("关注")) {
+                follow.setText(R.string.unfollow);
+            }else{
+                follow.setText(R.string.follow);
+            }
+
         }
     }
 
