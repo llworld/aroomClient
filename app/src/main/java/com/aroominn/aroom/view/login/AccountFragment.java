@@ -115,7 +115,7 @@ public class AccountFragment extends BaseFragment implements LoginView {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            loginPresenter.getLogin(this, param);
+            loginPresenter.getAccountLogin(this, param);
         }
     }
 

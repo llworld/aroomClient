@@ -22,7 +22,10 @@ public class UrlTools {
     /**
      * 登陆的url
      */
-    public final static String LOGIN_URL = SERVERIP + "api/jiguang/loginValidSmsCode";
+    public final static String LOGIN_URL = SERVERIP + "api/jiguang/loginValidSmsCode";    /**
+     * 账号登陆的url
+     */
+    public final static String ACCOUNT_LOGIN_URL = SERVERIP + "api/user/login";
 
     ////////////////////////////////我的/////////////////////////////////////
     /**
@@ -151,7 +154,7 @@ public class UrlTools {
     /**
      * 反馈信息
      */
-    public final static String FEEDBACK = SERVERIP + "api/setting/feedbac";
+    public final static String FEEDBACK = SERVERIP + "api/setting/feedback";
 
     ////////////////////////////////我的朋友/////////////////////////////////////
 

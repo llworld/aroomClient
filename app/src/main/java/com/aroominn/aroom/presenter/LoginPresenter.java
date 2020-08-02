@@ -2,6 +2,7 @@ package com.aroominn.aroom.presenter;
 
 
 import com.aroominn.aroom.base.BaseImpl;
+import com.aroominn.aroom.view.login.AccountFragment;
 
 import org.json.JSONObject;
 
@@ -18,4 +19,5 @@ public interface LoginPresenter {
 
     void getLogin(BaseImpl context, JSONObject param);
 
+    void getAccountLogin(BaseImpl context, JSONObject param);
 }

@@ -131,5 +131,6 @@ public interface RetrofitApi {
     /*获取我的朋友  相互关注的*/
     @POST(UrlTools.FEEDBACK)
     Observable<Result> getFeedBack(@Body RequestBody body);
-
+    @POST(UrlTools.ACCOUNT_LOGIN_URL)
+    Observable<User> getAccountLogin(@Body RequestBody jsonBody);
 }

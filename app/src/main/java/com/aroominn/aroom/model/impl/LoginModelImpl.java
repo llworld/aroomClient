@@ -81,4 +81,24 @@ public class LoginModelImpl implements LoginModel {
                     }
                 });
     }
+
+    //账号密码登录
+    @Override
+    public void loadAccountLogin(BaseImpl context, JSONObject param) {
+        RetrofitRequest.getApiService()
+                .getAccountLogin(RetrofitRequest.getJSONBody(param))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<User>(context,true) {
+                    @Override
+                    public void onSuccess(User user) {
+                        listener.onSuccess(user);
+                    }
+
+                    @Override
+                    public void onFail(User response) {
+                        listener.onError(response, UrlTools.LOGIN_URL);
+                    }
+                });
+    }
 }

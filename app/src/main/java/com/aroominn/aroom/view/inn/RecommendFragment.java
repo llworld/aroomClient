@@ -63,6 +63,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
     private StoryPresenter storyPresenter;
     private int maxPageNum;
     private TalePresenter talePresenter;
+    private boolean hasNextPage;
 
     public static RecommendFragment newInstance() {
         return new RecommendFragment();
@@ -118,7 +119,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
             @Override
             public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                 refresh = false;
-                if (pageNum < maxPageNum){
+                if (hasNextPage){
                     pageNum++;
                     getRequestData();
                 }
@@ -379,6 +380,7 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
     @Override
     public void setStory(Story story) {
         if (story.getStatus_code() == 0) {
+            hasNextPage = story.getData().isHasNextPage();
             maxPageNum = story.getData().getPageNum();
             tempStories = story.getData().getList();
             if (refresh) {
@@ -389,9 +391,10 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
             } else {
                 //加载数据
                 stories.addAll(tempStories);
-                adapter.addData(stories);
+                adapter.replaceData(stories);
             }
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -405,4 +408,11 @@ public class RecommendFragment extends BaseFragment implements BaseQuickAdapter.
 //            点赞成功
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
 }

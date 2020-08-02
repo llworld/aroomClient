@@ -62,4 +62,9 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginListener {
     public void getLogin(BaseImpl context, JSONObject param) {
         loginModel.loadLogin(context,param);
     }
+
+    @Override
+    public void getAccountLogin(BaseImpl context, JSONObject param) {
+        loginModel.loadAccountLogin(context,param);
+    }
 }

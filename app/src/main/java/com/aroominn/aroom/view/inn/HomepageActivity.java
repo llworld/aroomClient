@@ -302,7 +302,7 @@ public class HomepageActivity extends BaseActivity implements HomePageView {
 
     @Override
     public void setHomeInfo(HomeInfo user) {
-        if (user.getStatus_code() == 0) {
+        if (user.getStatus_code() == 0 && user.getData()!=null) {
 
             Glide.with(this)
                     .load(user.getData().getHeadUrl())

@@ -136,6 +136,7 @@
         <View style="@style/line_view" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/personal_tag_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_88">

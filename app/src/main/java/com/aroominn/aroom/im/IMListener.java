@@ -389,7 +389,9 @@ public class IMListener implements RongIM.ConversationBehaviorListener, RongIM.C
             // 判断消息类型  根据自己需求进行判断
             if (message.getContent() instanceof TextMessage) {
                 String textMessageContent = ((TextMessage) message.getContent()).getContent();
-                builder.setContentText("有新的消息");
+                builder.setContentText(textMessageContent);
+                builder.setContentTitle("有新的消息");
+
             } else if (message.getContent() instanceof ImageMessage) {
                 builder.setContentText("图片消息");
             } else if (message.getContent() instanceof VoiceMessage) {
@@ -401,7 +403,7 @@ public class IMListener implements RongIM.ConversationBehaviorListener, RongIM.C
             /**暂时无法获取用户昵称  考虑后期全部缓存
              *
              */
-            builder.setContentTitle(message.getContent().toString());
+            builder.setContentTitle("有新的消息");
 //            builder.setContentTitle(message.getContent().toString());
             builder.setSmallIcon(R.mipmap.logo);
             builder.setTicker("新消息");

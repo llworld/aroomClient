@@ -7,16 +7,16 @@ public  class FriendData implements Serializable {
 
 
 
-        private Integer Id;
+        private Integer id;
         private String nick;
         private String head;
 
         public Integer getId() {
-            return Id;
+            return id;
         }
 
         public void setId(Integer id) {
-            Id = id;
+            id = id;
         }
 
         public String getNick() {

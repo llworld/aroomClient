@@ -65,6 +65,7 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
 
 
     public static final String TAG = LatesFragment.class.getName();
+    private boolean hasNextPage;
 
     public static LatesFragment newInstance() {
         return new LatesFragment();
@@ -95,7 +96,7 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
             @Override
             public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                 refresh = false;
-                if (pageNum < maxPageNum) {
+                if (hasNextPage) {
                     pageNum++;
                     getRequestData();
                 } else {
@@ -155,7 +156,7 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
         try {
             param.put("pageNum", pageNum);
             param.put("pageSize", 10);
-            param.put("type", 1);    //推荐类型
+            param.put("type", 2);    //推荐类型
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -176,6 +177,7 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
         if (story.getStatus_code() == 0) {
             maxPageNum = story.getData().getPageNum();
             tempStories = story.getData().getList();
+            hasNextPage = story.getData().isHasNextPage();
             if (refresh) {
                 //刷新数据
                 stories.clear();
@@ -187,6 +189,7 @@ public class LatesFragment extends BaseFragment implements BaseQuickAdapter.OnIt
                 adapter.addData(story.getData().getList());
 //                adapter.replaceData(story.getData().getList());
             }
+            adapter.notifyDataSetChanged();
         }
     }
 

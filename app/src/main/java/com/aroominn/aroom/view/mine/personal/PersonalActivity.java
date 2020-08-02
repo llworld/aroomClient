@@ -51,6 +51,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView, OnPo
     @BindView(R.id.per_category)
     TextView perCategory;
     private PersonalPresenter personalPresenter;
+    private SexBottomPopup sexBottomPopup;
 
 
     @Override
@@ -105,7 +106,8 @@ public class PersonalActivity extends BaseActivity implements PersonalView, OnPo
                 break;
             case R.id.personal_sex_layout:
                 /*弹出选择器*/
-                SexBottomPopup sexBottomPopup = new SexBottomPopup(this);
+                sexBottomPopup = new SexBottomPopup(this);
+                sexBottomPopup.showPopupWindow();
                 sexBottomPopup.setOnMenuItemListener(this);
                 break;
             case R.id.personal_phone_layout:
@@ -206,6 +208,7 @@ public class PersonalActivity extends BaseActivity implements PersonalView, OnPo
         if (view.getTag().equals("保密"))
             sex = 3;
 
+        sexBottomPopup.dismiss();
         requestData(null, null, sex, null);
 
     }

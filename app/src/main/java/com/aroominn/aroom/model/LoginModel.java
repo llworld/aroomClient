@@ -15,4 +15,5 @@ public interface LoginModel {
 
     void loadLogin(BaseImpl context, JSONObject param);
 
+    void loadAccountLogin(BaseImpl context, JSONObject param);
 }

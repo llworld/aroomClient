@@ -65,6 +65,7 @@ public class FocusFragment extends BaseFragment implements BaseQuickAdapter.OnIt
     private boolean refresh = true;
 
     public static final String TAG = FocusFragment.class.getName();
+    private boolean hasNextPage;
 
     public static FocusFragment newInstance() {
         return new FocusFragment();
@@ -95,11 +96,10 @@ public class FocusFragment extends BaseFragment implements BaseQuickAdapter.OnIt
             @Override
             public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                 refresh = false;
-                if (pageNum < maxPageNum){
+                if (hasNextPage) {
                     pageNum++;
                     getRequestData();
-                }
-                else {
+                } else {
                     refreshLayout.finishLoadMore();
 //                    ToastUtils.showBottomToast("没有更多数据了", 0);
                 }
@@ -162,18 +162,20 @@ public class FocusFragment extends BaseFragment implements BaseQuickAdapter.OnIt
 
         if (story.getStatus_code() == 0) {
             maxPageNum = story.getData().getPageNum();
-            tempStories = stories;
+            tempStories = story.getData().getList();
+            hasNextPage = story.getData().isHasNextPage();
             if (refresh) {
-                //刷新数据
                 stories.clear();
+                //刷新数据
                 stories = tempStories;
-                adapter.setNewData(stories);
+                adapter.setNewData(tempStories);
             } else {
                 //加载数据
                 stories.addAll(tempStories);
-                adapter.addData(stories);
+                adapter.addData(tempStories);
 //                adapter.replaceData(story.getData().getList());
             }
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -194,8 +196,8 @@ public class FocusFragment extends BaseFragment implements BaseQuickAdapter.OnIt
 
             case R.id.story_item_head:
                 String targetId = stories.get(position).getUserId() + "";
-                if (SharedUtils.getInstance().getUserID()+""==targetId){
-                    ToastUtils.showBottomToast("不能查看自己主页",1);
+                if (SharedUtils.getInstance().getUserID() + "" == targetId) {
+                    ToastUtils.showBottomToast("不能查看自己主页", 1);
                     break;
                 }
                 Intent intent = new Intent(context, HomepageActivity.class);
@@ -234,7 +236,7 @@ public class FocusFragment extends BaseFragment implements BaseQuickAdapter.OnIt
         try {
             param.put("pageNum", pageNum);
             param.put("pageSize", 10);
-            param.put("type", 1);    //推荐类型
+            param.put("type", 0);    //推荐类型
         } catch (JSONException e) {
             e.printStackTrace();
         }

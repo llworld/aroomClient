@@ -11,6 +11,7 @@ import com.aroominn.aroom.base.BasicResponse;
 import com.aroominn.aroom.bean.Result;
 import com.aroominn.aroom.presenter.SettingPresenter;
 import com.aroominn.aroom.presenter.impl.SettingPresenterImpl;
+import com.aroominn.aroom.utils.ToastUtils;
 import com.aroominn.aroom.view.views.SettingView;
 import com.deadline.statebutton.StateButton;
 
@@ -68,7 +69,10 @@ public class FeedBackActivity extends BaseActivity implements SettingView {
 
     @Override
     public void onSuccess(Result result) {
-
+        if (result.getStatus_code() == 0) {
+            ToastUtils.showBottomToast("反馈成功", 1);
+            finish();
+        }
     }
 
     @Override

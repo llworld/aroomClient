@@ -24,15 +24,26 @@ public class ChatActivity extends BaseActivity implements FriendsView {
     @BindView(R.id.chat_title)
     TitleBar mTitleBar;
     private FriendsPresenter friendsPresenter;
+    private String targetId;
+    private String title;
 
     @Override
     public void initView(Bundle savedInstanceState) {
         StatusBarUtil.setPaddingSmart(context, ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0));
 
         /*目标用户ID*/
-        String targetId = getIntent().getData().getQueryParameter("targetId");//获取id
+        try{
+            //获取id
+            targetId = getIntent().getData().getQueryParameter("targetId");
+            //获取消息title
+            title = getIntent().getData().getQueryParameter("title");
+        }
+        catch (NullPointerException e){
+
+            targetId= getIntent().getStringExtra("targetId");
+            title= getIntent().getStringExtra("title");
+        }
         /*目标用户 昵称*/
-        String title = getIntent().getData().getQueryParameter("title");//获取消息title
 //        mTitleBar.setTitle(R.string.title_message_chat);
         mTitleBar.setTitle(title);
 

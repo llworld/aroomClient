@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.aroominn.aroom.R;
 import com.aroominn.aroom.adapter.FollowListAdapter;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 /**
  * 掌柜的  我关注的
@@ -75,6 +78,12 @@ public class BossFragment extends BaseFragment implements FriendsView, BaseQuick
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new FollowListAdapter(context,R.layout.list_item_follow, new ArrayList<FriendData>());
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener(this);
+        View emptyView=getLayoutInflater().inflate(R.layout.layout_friends_empty, null);
+        emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        //添加空视图
+        mAdapter.setEmptyView(emptyView);
 //        mAdapter.setEmptyView(R.layout.layout_friends_empty);
 
     }
@@ -110,8 +119,13 @@ public class BossFragment extends BaseFragment implements FriendsView, BaseQuick
                 break;
             case R.id.follow_item_rl:
 //                聊天
-                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
-                startActivity(chatIntent);
+                String targetId=f.get(position).getId()+"";
+                String title=f.get(position).getNick();
+                RongIM.getInstance().startConversation(context, Conversation.ConversationType.PRIVATE, targetId, title);
+//                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+//                chatIntent.putExtra("targetId", f.get(position).getId());
+//                chatIntent.putExtra("title", f.get(position).getNick());
+//                startActivity(chatIntent);
                 break;
         }
     }
