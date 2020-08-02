@@ -21,9 +21,8 @@
         2. 对动态评论、点赞、收藏、举报
         3、关注好友进行聊天
 # 5. APP
-        1. 下载地址 [蒲公英托管平台](www.pgyer.com/oDWs).   （密码：123）
-
-        - ![login.jpg](login.jpg)
-        - ![inn.jpg](inn.jpg)
-        - ![mine.jpg](mine.jpg)
-        - ![chat.jpg](chat.jpg)
+1. 下载地址 [蒲公英托管平台](www.pgyer.com/oDWs).   （密码：123）
+- ![login.jpg](login.jpg)
+- ![inn.jpg](inn.jpg)
+- ![mine.jpg](mine.jpg)
+- ![chat.jpg](chat.jpg)
