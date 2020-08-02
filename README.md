@@ -24,5 +24,5 @@
 1. 下载地址 [蒲公英托管平台](www.pgyer.com/oDWs).   （密码：123）
 - ![login.jpg](login.jpg)
 - ![inn.jpg](inn.jpg)
-- ![mine.jpg](mine.jpg)
+- ![https://github.com/llworld/aroomClient/blob/master/chat.jpg](mine.jpg)
 (https://github.com/llworld/aroomClient/blob/master/chat.jpg)
