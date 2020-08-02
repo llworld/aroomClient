@@ -22,3 +22,8 @@
         3、关注好友进行聊天
 # 5. APP
         1. 下载地址 [蒲公英托管平台](https://www.pgyer.com/oDWs "Aroom").   （密码：123）
+
+        - ![login.jpg](login.jpg)
+        - ![inn.jpg](inn.jpg)
+        - ![mine.jpg](mine.jpg)
+        - ![chat.jpg](chat.jpg)
