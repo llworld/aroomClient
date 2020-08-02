@@ -22,7 +22,7 @@
         3、关注好友进行聊天
 # 5. APP
 1. 下载地址 [蒲公英托管平台](https://www.pgyer.com/oDWs).   （密码：123）
-- ![github.com/llworld/aroomClient/blob/master/login.jpg]
-- ![github.com/llworld/aroomClient/blob/master/inn.jpg]
-- ![github.com/llworld/aroomClient/blob/master/mine.jpg]
-- ![github.com/llworld/aroomClient/blob/master/chat.jpg]
+- ![Image](github.com/llworld/aroomClient/blob/master/login.jpg)
+- ![image](github.com/llworld/aroomClient/blob/master/inn.jpg)
+- ![image](github.com/llworld/aroomClient/blob/master/mine.jpg)
+- ![image](github.com/llworld/aroomClient/blob/master/chat.jpg)
